@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\TimestampeableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AnswerRepository")
@@ -21,30 +22,55 @@ class Answer
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     *     message = "Le contenu du message ne peut pas être vide"
+     * )
+     * @Assert\Length(
+     *     min = 10,
+     *     minMessage = "Le contenu du message doit contenir au minimum {{ limit }} caractères"
+     * )
      */
     private $content;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Type(
+     *     type = "bool"
+     * )
      */
     private $isValidated;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Type(
+     *     type = "bool"
+     * )
      */
     private $isEnable;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(
+     *     message = "Ce champ de saisie ne peut pas être vide"
+     * )
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank(
+     *     message = "Ce champ de saisie ne peut pas être vide"
+     * )
      */
     private $question;
+
+    public function __construct()
+    {
+        $this->isValidated = false;
+        $this->isEnable    = true;
+    }
 
     public function getId(): ?int
     {

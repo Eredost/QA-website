@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\TimestampeableTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoleRepository")
@@ -21,6 +22,15 @@ class Role
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\NotBlank(
+     *     message = "La saisie du nom est obligatoire"
+     * )
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 20,
+     *     minMessage = "Le nom doit contenir au minimum {{ limit }} caractères",
+     *     maxMessage = "Le nom doit contenir au maximum {{ limit }} caractères"
+     * )
      */
     private $name;
 

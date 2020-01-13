@@ -29,8 +29,8 @@ class User implements UserInterface
      * @Assert\Length(
      *     min = 5,
      *     max = 15,
-     *     minMessage = "Votre nom d'utilisateur doit au minimum contenir {{ limit }} caractères",
-     *     maxMessage = "Votre nom d'utilisateur doit au maximum contenir {{ limit }} caractères"
+     *     minMessage = "Le nom d'utilisateur doit au minimum contenir {{ limit }} caractères",
+     *     maxMessage = "Le nom d'utilisateur doit au maximum contenir {{ limit }} caractères"
      * )
      */
     private $username;
@@ -47,8 +47,8 @@ class User implements UserInterface
      * @Assert\Length(
      *     min = 5,
      *     max = 18,
-     *     minMessage = "Votre mot de passe doit au minimum contenir {{ limit }} caractères",
-     *     maxMessage = "Votre mot de passe doit au maximum contenir {{ limit }} caractères"
+     *     minMessage = "Le mot de passe doit au minimum contenir {{ limit }} caractères",
+     *     maxMessage = "Le mot de passe doit au maximum contenir {{ limit }} caractères"
      * )
      */
     private $password;
@@ -57,7 +57,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=20, nullable=true)
      * @Assert\Regex(
      *     pattern = "/^(\w{3,20})?$/u",
-     *     message = "Votre prénom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
+     *     message = "Le prénom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
      * )
      */
     private $firstname;
@@ -66,7 +66,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=20, nullable=true)
      * @Assert\Regex(
      *     pattern = "/^(\w{3,20})?$/u",
-     *     message = "Votre nom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
+     *     message = "Le nom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
      * )
      */
     private $lastname;
