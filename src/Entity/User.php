@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -24,6 +25,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 15,
+     *     minMessage = "Votre nom d'utilisateur doit au minimum contenir {{ limit }} caractères",
+     *     maxMessage = "Votre nom d'utilisateur doit au maximum contenir {{ limit }} caractères"
+     * )
      */
     private $username;
 
@@ -35,26 +43,48 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min = 5,
+     *     max = 18,
+     *     minMessage = "Votre mot de passe doit au minimum contenir {{ limit }} caractères",
+     *     maxMessage = "Votre mot de passe doit au maximum contenir {{ limit }} caractères"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @Assert\Regex(
+     *     pattern = "/^(\w{3,20})?$/u",
+     *     message = "Votre prénom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=20, nullable=true)
+     * @Assert\Regex(
+     *     pattern = "/^(\w{3,20})?$/u",
+     *     message = "Votre nom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex(
+     *     pattern = "/^((https:\/\/)?github\.com\/.*)?$/",
+     *     message = "L'url n'est pas valide"
+     * )
      */
     private $github;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Type(
+     *     type = "bool"
+     * )
      */
     private $isEnable;
 
@@ -70,8 +100,9 @@ class User implements UserInterface
 
     public function __construct()
     {
-        $this->answers = new ArrayCollection();
+        $this->answers   = new ArrayCollection();
         $this->questions = new ArrayCollection();
+        $this->isEnable  = true;
     }
 
     public function getId(): ?int
