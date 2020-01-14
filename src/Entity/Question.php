@@ -6,6 +6,7 @@ use App\Entity\Traits\TimestampeableTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QuestionRepository")
@@ -23,21 +24,45 @@ class Question
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *     message = "Le titre ne peut pas être vide"
+     * )
+     * @Assert\Length(
+     *     min = 10,
+     *     max = 255,
+     *     minMessage = "Le titre doit au minimum contenir {{ limit }} caractères",
+     *     maxMessage = "Le titre doit au maximum contenir {{ limit }} caractères"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(
+     *     message = "Le titre ne peut pas être vide"
+     * )
+     * @Assert\Length(
+     *     min = 10,
+     *     max = 8000,
+     *     minMessage = "Le contenu doit au minimum contenir {{ limit }} caractères",
+     *     maxMessage = "Le contenu doit au maximum contenir {{ limit }} caractères"
+     * )
      */
     private $content;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\PositiveOrZero(
+     *     message = "Le nombre de votes ne peut pas être négatif"
+     * )
      */
     private $votes;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Assert\Type(
+     *     type = "bool"
+     * )
      */
     private $isEnable;
 
@@ -59,8 +84,10 @@ class Question
 
     public function __construct()
     {
-        $this->answers = new ArrayCollection();
-        $this->tags = new ArrayCollection();
+        $this->answers  = new ArrayCollection();
+        $this->tags     = new ArrayCollection();
+        $this->votes    = 0;
+        $this->isEnable = true;
     }
 
     public function getId(): ?int

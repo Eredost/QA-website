@@ -20,7 +20,12 @@ abstract class BaseFixture extends Fixture
 
     protected abstract function loadData(ObjectManager $manager);
 
-    public function loaded(ObjectManager $manager)
+    /**
+     * Method called when the doctrine:fixtures:load command is used
+     *
+     * @param ObjectManager $manager
+     */
+    public function load(ObjectManager $manager)
     {
         $this->manager = $manager;
         $this->faker   = Factory::create('fr_FR');
@@ -59,5 +64,53 @@ abstract class BaseFixture extends Fixture
             $this->manager->persist($entity);
             $this->addReference(sprintf('%s_%d', $groupName, $i), $entity);
         }
+    }
+
+    /**
+     * Returns all entities according to the group name created earlier with the createMany function
+     *
+     * $this->getReferences('main_user');
+     *
+     * @param string $groupName
+     *
+     * @return object[]
+     *
+     * @throws \InvalidArgumentException when the desired group name does not exist
+     */
+    protected function getReferences(string $groupName)
+    {
+        if (!isset($this->referencesIndex[$groupName])) {
+            $this->referencesIndex[$groupName] = [];
+            foreach ($this->referenceRepository->getReferences() as $key => $ref) {
+                if (strpos($key, $groupName.'_') === 0) {
+                    $reference = $this->getReference($key);
+                    $this->referencesIndex[$groupName][] = $reference;
+                }
+            }
+        }
+        if (empty($this->referencesIndex[$groupName])) {
+
+            throw new \InvalidArgumentException(sprintf('Did not find any references saved with the group name "%s"', $groupName));
+        }
+
+        return $this->referencesIndex[$groupName];
+    }
+
+    /**
+     * Returns a single entity randomly according to those generated with the BaseFixture::getReferences() method
+     *
+     * $this->getRandomReference('main_user');
+     *
+     * @param string $groupName
+     *
+     * @return object
+     *
+     * @throws \InvalidArgumentException when the desired group name does not exist
+     */
+    protected function getRandomReference(string $groupName)
+    {
+        $references = $this->getReferences($groupName);
+
+        return $this->faker->randomElement($references);
     }
 }
