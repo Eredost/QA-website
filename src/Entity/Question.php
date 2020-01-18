@@ -84,10 +84,11 @@ class Question
 
     public function __construct()
     {
-        $this->answers  = new ArrayCollection();
-        $this->tags     = new ArrayCollection();
-        $this->votes    = 0;
-        $this->isEnable = true;
+        $this->answers   = new ArrayCollection();
+        $this->tags      = new ArrayCollection();
+        $this->votes     = 0;
+        $this->isEnable  = true;
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

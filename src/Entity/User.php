@@ -103,6 +103,7 @@ class User implements UserInterface
         $this->answers   = new ArrayCollection();
         $this->questions = new ArrayCollection();
         $this->isEnable  = true;
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

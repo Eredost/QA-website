@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\DataFixtures\Provider\RoleProvider;
+use App\DataFixtures\Provider\TagProvider;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -13,7 +15,7 @@ abstract class BaseFixture extends Fixture
     private $manager;
 
     /** @var Generator $faker */
-    private $faker;
+    protected $faker;
 
     /** @var array $referencesIndex */
     private $referencesIndex = array();
@@ -29,6 +31,8 @@ abstract class BaseFixture extends Fixture
     {
         $this->manager = $manager;
         $this->faker   = Factory::create('fr_FR');
+        $this->faker->addProvider(new RoleProvider());
+        $this->faker->addProvider(new TagProvider());
 
         $this->loadData($manager);
     }
@@ -77,7 +81,7 @@ abstract class BaseFixture extends Fixture
      *
      * @throws \InvalidArgumentException when the desired group name does not exist
      */
-    protected function getReferences(string $groupName)
+    protected function getReferences(string $groupName): array
     {
         if (!isset($this->referencesIndex[$groupName])) {
             $this->referencesIndex[$groupName] = [];
@@ -107,7 +111,7 @@ abstract class BaseFixture extends Fixture
      *
      * @throws \InvalidArgumentException when the desired group name does not exist
      */
-    protected function getRandomReference(string $groupName)
+    protected function getRandomReference(string $groupName): object
     {
         $references = $this->getReferences($groupName);
 

@@ -70,6 +70,7 @@ class Answer
     {
         $this->isValidated = false;
         $this->isEnable    = true;
+        $this->createdAt   = new \DateTime();
     }
 
     public function getId(): ?int
