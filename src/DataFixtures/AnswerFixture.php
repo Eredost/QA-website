@@ -12,10 +12,12 @@ class AnswerFixture extends BaseFixture implements DependentFixtureInterface
     public function loadData(ObjectManager $manager)
     {
         $this->createMany(50, 'main_answer', function () {
+            $questionEntity = $this->getRandomReference('main_question');
             $answerEntity = (new Answer())
                 ->setContent($this->faker->paragraphs($this->faker->numberBetween(1, 4), true))
                 ->setUser($this->getRandomReference('main_user'))
-                ->setQuestion($this->getRandomReference('main_question'))
+                ->setQuestion($questionEntity)
+                ->setCreatedAt($this->faker->dateTimeBetween($questionEntity->getCreatedAt()))
             ;
 
             return $answerEntity;

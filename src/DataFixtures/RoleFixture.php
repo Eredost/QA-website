@@ -11,12 +11,13 @@ class RoleFixture extends BaseFixture
     public function loadData(ObjectManager $manager)
     {
         $roles = $this->faker->getRoles();
-        foreach ($roles as $role) {
+        $this->createMany(count($roles), 'main_role', function ($count) use ($roles){
             $roleEntity = (new Role())
-                ->setName($role)
+                ->setName($roles[$count])
             ;
-            $manager->persist($roleEntity);
-        }
+
+            return $roleEntity;
+        });
 
         $manager->flush();
     }

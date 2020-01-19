@@ -39,10 +39,9 @@ class UserTest extends KernelTestCase
         $this->assertHasErrors($this->getEntity()->setUsername('123456789abcdefg'), 1);
     }
 
-    public function testInvalidUsedUsername()
+    public function testInvalidAlreadyUsedUsername()
     {
-        // TODO: waiting for fixtures implementation
-        $this->assertEquals(1, 1);
+        $this->assertHasErrors($this->getEntity()->setUsername('moderator'), 1);
     }
 
     public function testInvalidBlankPassword()

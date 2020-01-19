@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 
 use App\Entity\User;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class UserFixture extends BaseFixture
+class UserFixture extends BaseFixture implements DependentFixtureInterface
 {
     /** @var UserPasswordEncoderInterface */
     private $encoder;
@@ -19,24 +20,47 @@ class UserFixture extends BaseFixture
 
     public function loadData(ObjectManager $manager)
     {
-        $roles = $this->faker->getRoles();
-        foreach ($roles as $index => $role) {
-            $this->createMany(3, $index . '_user', function () use ($role){
-                $userEntity = (new User())
-                    ->setUsername($this->faker->unique()->userName)
-                    ->setRoles([$role])
-                    ->setFirstname($this->faker->firstName)
-                    ->setLastname($this->faker->lastName)
-                ;
-                $userEntity
-                    ->setGithub('https://github.com/' . $userEntity->getUsername())
-                    ->setPassword($this->encoder->encodePassword($userEntity, 'password'))
-                ;
+        $this->createMany(6, 'main_user', function () {
+            $userEntity = (new User())
+                ->setUsername($this->faker->unique()->userName)
+                ->setRoles(['ROLE_USER'])
+                ->setFirstname($this->faker->firstName)
+                ->setLastname($this->faker->lastName)
+            ;
+            $userEntity
+                ->setGithub('https://github.com/' . $userEntity->getUsername())
+                ->setPassword($this->encoder->encodePassword($userEntity, 'password'))
+            ;
 
-                return $userEntity;
-            });
-        }
+            return $userEntity;
+        });
+
+        // Creating User with moderator roles
+        $moderatorUserEntity = (new User())
+            ->setUsername('moderator')
+            ->setRoles(['ROLE_MODERATOR'])
+        ;
+        $moderatorUserEntity->setPassword($this->encoder->encodePassword($moderatorUserEntity, 'password'));
+        $manager->persist($moderatorUserEntity);
+
+        // Creating User with administrator roles
+        $adminUserEntity = (new User())
+            ->setUsername('admin')
+            ->setRoles(['ROLE_ADMIN'])
+        ;
+        $adminUserEntity->setPassword($this->encoder->encodePassword($adminUserEntity, 'password'));
+        $manager->persist($adminUserEntity);
 
         $manager->flush();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDependencies()
+    {
+        return [
+            RoleFixture::class,
+        ];
     }
 }
