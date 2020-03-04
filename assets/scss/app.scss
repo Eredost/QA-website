@@ -1,8 +1,11 @@
 @charset "UTF-8";
 
-// @import 'abstracts'
+@import
+    'abstracts/variables';
 
-// @import 'vendors'
+@import
+    '~font-awesome/scss/font-awesome',
+    '~reset-css/reset.css';
 
 @import
     'base/base';

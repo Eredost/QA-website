@@ -71,4 +71,13 @@ Encore
     //.addEntry('admin', './assets/js/admin.js')
 ;
 
+Encore.configureLoaderRule('fonts', loaderRule => {
+    loaderRule.test = /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/;
+    loaderRule.options = {
+        name: '[name].[ext]',
+        outputPath: '../fonts/',
+        publicPath: '../fonts'
+    };
+});
+
 module.exports = Encore.getWebpackConfig();
