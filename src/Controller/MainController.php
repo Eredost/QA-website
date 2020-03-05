@@ -10,10 +10,11 @@ class MainController extends AbstractController
 {
     /**
      * @Route("/",
+     *     methods={"GET"},
      *     name="home")
      */
-    public function index()
+    public function home()
     {
-        return $this->render('main/index.html.twig');
+        return $this->render('frontend/main/index.html.twig');
     }
 }
