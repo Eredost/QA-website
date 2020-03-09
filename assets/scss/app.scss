@@ -9,11 +9,15 @@
 
 @import
     'base/base',
-    'base/typography';
+    'base/typography',
+    'base/mixins';
 
-// @import 'layout'
+@import
+    'layout/header';
 
-// @import 'components'
+@import
+    'components/navbar',
+    'components/profile';
 
 // @import 'pages'
 

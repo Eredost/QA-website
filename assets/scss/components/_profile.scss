@@ -1,0 +1,51 @@
+.profile {
+
+  &__search,
+  &__unenrolled,
+  &__registred,
+  .unenrolled__links li,
+  .search__icon,
+  .search__form {
+    display: inline-block;
+  }
+
+  &__search {
+    margin-right: 0.5em;
+
+    .search__icon {
+      color: $color-text-alt;
+      font-size: 1.1em;
+    }
+
+    .search__form {
+      overflow-x: hidden;
+      vertical-align: bottom;
+
+      input[name="q"] {
+        font-size: 0.7em;
+        color: $color-text-alt;
+        padding: 0.3em 0.1em;
+        border: none;
+        border-bottom: 1px solid $color-text-alt;
+        background-color: transparent;
+      }
+
+      &.hidden {
+        width: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__unenrolled {
+    font-size: 0.95em;
+
+    li + li {
+      margin-left: 0.8em;
+    }
+
+    a:hover {
+      @include white-border;
+    }
+  }
+}

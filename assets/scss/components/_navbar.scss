@@ -1,0 +1,26 @@
+.navbar {
+
+  &__logo,
+  &__links,
+  &__links li {
+    display: inline-block;
+  }
+
+  &__logo {
+    font-weight: bold;
+    margin-right: 1.5em;
+  }
+
+  &__links {
+    font-size: 0.95em;
+
+    li + li {
+      margin-left: 0.8em;
+    }
+
+    li a:hover,
+    li a.active {
+      @include white-border;
+    }
+  }
+}
