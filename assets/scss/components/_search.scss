@@ -1,0 +1,37 @@
+.search {
+  margin-right: 0.5em;
+
+  .search__icon {
+    color: $color-text-alt;
+    font-size: 1.1em;
+    cursor: pointer;
+  }
+
+  .search__form {
+    overflow-x: hidden;
+    vertical-align: sub;
+
+    input[name="q"] {
+      font-size: 0.7em;
+      color: $color-text-alt;
+      padding: 0.3em 0.1em;
+      border: none;
+      border-bottom: 2px solid $color-text-alt;
+      background-color: transparent;
+
+      &:focus {
+        border: none;
+        border-bottom: 2px solid $color-text-alt;
+      }
+
+      &::placeholder {
+        color: #DDDDDD;
+      }
+    }
+
+    &.hidden {
+      width: 0;
+      visibility: hidden;
+    }
+  }
+}
