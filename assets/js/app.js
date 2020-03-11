@@ -6,26 +6,10 @@
  */
 
 // any CSS you import will output into a single css file (app.css in this case)
-import ('../scss/app.scss');
+import '../scss/app.scss';
 
-class Header {
-    constructor(headerSelector) {
-        this.header = document.querySelector(headerSelector);
-
-        let searchDivElement = document.querySelector(`.${this.header.className} .profile__search`);
-        searchDivElement.addEventListener('mouseover', this.handleSearchFormMouseOver);
-        searchDivElement.addEventListener('mouseleave', this.handleSearchFormMouseLeave);
-    }
-
-    handleSearchFormMouseOver(event) {
-        document.querySelector(`.${event.currentTarget.className} .search__form`).classList.remove('hidden');
-    }
-
-    handleSearchFormMouseLeave(event) {
-        document.querySelector(`.${event.currentTarget.className} .search__form`).classList.add('hidden');
-    }
-}
+import Header from './header';
 
 window.addEventListener('DOMContentLoaded', () => {
-    new Header('.header');
+    new Header('header');
 });

@@ -28,6 +28,10 @@
         border: none;
         border-bottom: 1px solid $color-text-alt;
         background-color: transparent;
+
+        &::placeholder {
+          color: #DDDDDD;
+        }
       }
 
       &.hidden {
