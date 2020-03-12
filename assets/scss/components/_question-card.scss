@@ -1,0 +1,30 @@
+.question-card {
+  background-color: #FFFFFF;
+  min-height: 100px;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+
+  & + & {
+    margin-top: 1em;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+
+    .head {
+
+      &__title {
+        width: 60%;
+
+        a {
+          color: $color-text;
+        }
+      }
+
+      &__tags {
+        width: 40%;
+      }
+    }
+  }
+}
