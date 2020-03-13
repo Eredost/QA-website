@@ -16,6 +16,8 @@
 
       &__title {
         width: 60%;
+        align-self: flex-start;
+        font-weight: 500;
 
         a {
           color: $color-text;
@@ -25,6 +27,15 @@
       &__tags {
         width: 40%;
       }
+    }
+  }
+
+  &__excerpt {
+    margin-top: 0.6em;
+
+    .excerpt__content {
+      font-size: 0.75em;
+      line-height: 1.2;
     }
   }
 }
