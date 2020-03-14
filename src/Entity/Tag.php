@@ -41,10 +41,22 @@ class Tag
      */
     private $questions;
 
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $bgColor;
+
+    /**
+     * @ORM\Column(type="string", length=25)
+     */
+    private $textColor;
+
     public function __construct()
     {
         $this->questions = new ArrayCollection();
         $this->createdAt = new \DateTime();
+        $this->bgColor   = '#42A5F5';
+        $this->textColor = '#FFFFFF';
     }
 
     public function getId(): ?int
@@ -88,6 +100,30 @@ class Tag
             $this->questions->removeElement($question);
             $question->removeTag($this);
         }
+
+        return $this;
+    }
+
+    public function getBgColor(): ?string
+    {
+        return $this->bgColor;
+    }
+
+    public function setBgColor(string $bgColor): self
+    {
+        $this->bgColor = $bgColor;
+
+        return $this;
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->textColor;
+    }
+
+    public function setTextColor(string $textColor): self
+    {
+        $this->textColor = $textColor;
 
         return $this;
     }
