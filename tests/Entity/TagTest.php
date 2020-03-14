@@ -16,6 +16,8 @@ class TagTest extends KernelTestCase
     {
         return (new Tag())
             ->setName('Test')
+            ->setBgColor('blue')
+            ->setTextColor('#FFFFFF')
         ;
     }
 
@@ -33,5 +35,28 @@ class TagTest extends KernelTestCase
     {
         $this->assertHasErrors($this->getEntity()->setName('Ab'), 1);
         $this->assertHasErrors($this->getEntity()->setName('Very very long tag name'), 1);
+    }
+
+    public function testInvalidBlankBgColor()
+    {
+        $this->assertHasErrors($this->getEntity()->setBgColor(''), 2);
+    }
+
+    public function testInvalidLengthBgColor()
+    {
+        $this->assertHasErrors($this->getEntity()->setBgColor('#00000000000000000000000000'), 1);
+        $this->assertHasErrors($this->getEntity()->setBgColor('#0'), 1);
+    }
+
+    public function testInvalidBlankTextColor()
+    {
+        $this->assertHasErrors($this->getEntity()->setTextColor(''), 2);
+    }
+
+    public function testInvalidLengthTextColor()
+    {
+        $this->assertHasErrors($this->getEntity()->setTextColor('#00000000000000000000000000'), 1);
+        $this->assertHasErrors($this->getEntity()->setTextColor('#0'), 1);
+
     }
 }

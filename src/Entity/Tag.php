@@ -43,11 +43,29 @@ class Tag
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank(
+     *     message = "The background color value can't be blank"
+     * )
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 25,
+     *     minMessage = "The background color value is too short, please specify minimum {{ limit }} characters",
+     *     maxMessage = "The background color value is too long, you can use hexadecimal, rgb or color name"
+     * )
      */
     private $bgColor;
 
     /**
      * @ORM\Column(type="string", length=25)
+     * @Assert\NotBlank(
+     *     message = "The text color value can't be blank"
+     * )
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 25,
+     *     minMessage = "The text color value is too short, please specify minimum {{ limit }} characters",
+     *     maxMessage = "The text color value is too long, you can use hexadecimal, rgb or color name"
+     * )
      */
     private $textColor;
 
