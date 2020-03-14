@@ -1,0 +1,15 @@
+.sidebar {
+  position: sticky;
+  top: 20px;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  padding: 1em;
+
+  // FIXME
+  min-height: 500px;
+
+  &__head {
+    border-bottom: 2px solid #BBBBBB;
+    padding-bottom: 0.3em;
+  }
+}
