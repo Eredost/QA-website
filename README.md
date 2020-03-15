@@ -1,4 +1,7 @@
 # QA Website
+
+[![Build Status](https://travis-ci.com/Eredost/QA-website.svg?branch=master)](https://travis-ci.com/Eredost/QA-website)
+
 **Project on the same principle as the StackOverflow or Quora site. Users can sign up to ask and answer questions.**
 
 ## Additional docs

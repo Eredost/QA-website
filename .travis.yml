@@ -1,5 +1,6 @@
 language: php
-sudo: false
+os: linux
+dist: xenial
 
 services:
   - mysql
@@ -8,13 +9,14 @@ cache:
   directories:
     - $HOME/.composer/cache/files
     - $HOME/symfony-bridge/.phpunit
+  timeout: 3
 
 env:
   global:
     - PHPUNIT_FLAGS="-v"
     - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
 
-matrix:
+jobs:
   fast_finish: true
   include:
     # Test the latest stable release
