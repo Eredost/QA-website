@@ -11,7 +11,9 @@
         </h3>
 
         <div class="head__tags">
-            {% include('frontend/layouts/_tag.html.twig') %}
+            {% for tag in question.tags %}
+                {% include('frontend/layouts/_tag.html.twig') with { 'tag': tag } only %}
+            {% endfor %}
         </div>
     </div>
     <!-- Card Head -->

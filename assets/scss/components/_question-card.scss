@@ -19,6 +19,10 @@
         align-self: flex-start;
         font-weight: 500;
 
+        &::first-letter {
+          text-transform: uppercase;
+        }
+
         a {
           color: $color-text;
         }
