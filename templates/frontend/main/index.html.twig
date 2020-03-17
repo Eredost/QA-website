@@ -4,8 +4,8 @@
 
 {% block body %}
 
-    {% for i in 0..10 %}
-        {% include('frontend/layouts/_question-card.html.twig') %}
+    {% for question in questions %}
+        {% include('frontend/layouts/_question-card.html.twig') with { 'question': question } only %}
     {% endfor %}
 
 {% endblock %}

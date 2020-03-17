@@ -6,14 +6,12 @@
 
         <h3 class="head__title">
             <a href="#">
-                How to initialize a variable on a PHP ?
+                {{ question.title }}
             </a>
         </h3>
 
         <div class="head__tags">
-            {% for ii in 0..3 %}
-                {% include('frontend/layouts/_tag.html.twig') %}
-            {% endfor %}
+            {% include('frontend/layouts/_tag.html.twig') %}
         </div>
     </div>
     <!-- Card Head -->
@@ -21,7 +19,7 @@
     <!--Card Excerpt -->
     <div class="question-card__excerpt">
         <p class="excerpt__content">
-            Ut ac mauris sit amet lectus dignissim viverra. Phasellus mollis pellentesque pretium. Sed sed ante ut quam sagittis ornare ac quis mauris. Quisque aliquam, felis sit amet maximus lacinia, metus justo consequat ligula, quis venenatis...
+            {{ question.content|truncate(300, '...') }}
         </p>
     </div>
     <!--Card Excerpt -->
