@@ -16,7 +16,7 @@ class MainController extends AbstractController
      */
     public function home(QuestionRepository $questionRepository)
     {
-        $questions = $questionRepository->findAll();
+        $questions = $questionRepository->findAllQuestionsWithTags();
 
         return $this->render('frontend/main/index.html.twig', [
             'questions' => $questions,
