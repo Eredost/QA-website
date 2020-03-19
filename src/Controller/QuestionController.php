@@ -27,7 +27,7 @@ class QuestionController extends AbstractController
      */
     public function show(Question $question)
     {
-        return $this->render('frontend/question/index.html.twig', [
+        return $this->render('frontend/question/show.html.twig', [
             'question' => $question,
         ]);
     }

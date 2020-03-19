@@ -1,0 +1,29 @@
+<div class="question-show">
+
+    <!-- Card Head -->
+    <div class="question-show__head">
+
+        <div class="head__tags">
+            {% for tag in question.tags %}
+                {% include('frontend/layouts/_tag.html.twig') with { 'tag': tag } only %}
+            {% endfor %}
+        </div>
+
+        <h3 class="head__title">
+            <a href="{{ path('question_show', {'id': question.id}) }}">
+                {{ question.title }}
+            </a>
+        </h3>
+    </div>
+    <!-- Card Head -->
+
+    <!--Card Content -->
+    <div class="question-show__content">
+
+        <p class="content__paragraph">
+            {{ question.content }}
+        </p>
+    </div>
+    <!--Card Content -->
+
+</div>

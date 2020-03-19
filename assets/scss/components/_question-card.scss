@@ -11,6 +11,8 @@
   &__head {
     display: flex;
     align-items: center;
+    border-bottom: 2px solid $color-text-alt-darkened;
+    padding-bottom: 0.4em;
 
     .head {
 
