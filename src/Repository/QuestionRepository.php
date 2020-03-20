@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method Question|null find($id, $lockMode = null, $lockVersion = null)
@@ -23,17 +24,16 @@ class QuestionRepository extends ServiceEntityRepository
     {
         $firstResult = ($page - 1) * $maxResults;
 
-        // FIXME: Max and First results are influenced by join
-        return $this->createQueryBuilder('q')
+        $query = $this->createQueryBuilder('q')
             ->join('q.tags', 't')
             ->addSelect('t')
             ->orderBy('q.createdAt', 'DESC')
             ->orderBy('q.id', 'ASC')
             ->setMaxResults($maxResults)
             ->setFirstResult($firstResult)
-            ->getQuery()
-            ->getResult()
         ;
+
+        return new Paginator($query, true);
     }
 
     // /**

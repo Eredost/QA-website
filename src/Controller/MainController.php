@@ -21,6 +21,7 @@ class MainController extends AbstractController
 
         return $this->render('frontend/main/index.html.twig', [
             'questions' => $questions,
+            'page'      => $page,
         ]);
     }
 }
