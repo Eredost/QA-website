@@ -19,12 +19,19 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-    public function findAllQuestionsWithTags()
+    public function findAllQuestionsWithTags(int $page, int $maxResults)
     {
+        $firstResult = ($page - 1) * $maxResults;
+        dump($firstResult);
+
+        // FIXME: Max and First results are influenced by join
         return $this->createQueryBuilder('q')
             ->join('q.tags', 't')
             ->addSelect('t')
             ->orderBy('q.createdAt', 'DESC')
+            ->orderBy('q.id', 'ASC')
+            ->setMaxResults($maxResults)
+            ->setFirstResult($firstResult)
             ->getQuery()
             ->getResult()
         ;
