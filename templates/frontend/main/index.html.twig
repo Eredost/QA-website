@@ -5,7 +5,14 @@
 {% block body %}
 
     {% for question in questions %}
-        {% include('frontend/layouts/_question-card.html.twig') with { 'question': question } only %}
+        {% include('frontend/layouts/_question-card.html.twig') with {
+            'question': question
+        } only %}
     {% endfor %}
+
+    {% include('frontend/layouts/_paginator.html.twig') with {
+        'currentPage': questions.currentPage,
+        'lastPage': questions.lastPage
+    } only %}
 
 {% endblock %}

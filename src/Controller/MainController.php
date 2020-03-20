@@ -16,12 +16,14 @@ class MainController extends AbstractController
      */
     public function home(QuestionRepository $questionRepository, Request $request)
     {
-        $page = $request->query->get('page', 1);
-        $questions = $questionRepository->findAllQuestionsWithTags($page, 10);
+        $currentPage = $request->query->get('page', 1);
+
+        $questions = $questionRepository->findAllQuestionsWithTags($currentPage, 10);
+        $questions->lastPage = intval(ceil($questions->count() / 10));
+        $questions->currentPage = intval($currentPage);
 
         return $this->render('frontend/main/index.html.twig', [
             'questions' => $questions,
-            'page'      => $page,
         ]);
     }
 }
