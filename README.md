@@ -1,6 +1,6 @@
 # Welcome on UbberAnswers
 
-[![Build Status](https://travis-ci.com/Eredost/QA-website.svg?branch=master)](https://travis-ci.com/Eredost/QA-website)
+[![Build Status](https://travis-ci.com/Eredost/UbberAnswers.svg?branch=master)](https://travis-ci.com/Eredost/UbberAnswers)
 
 **Project on the same principle as the StackOverflow or Quora site. Users can sign up to ask and answer questions.**
 

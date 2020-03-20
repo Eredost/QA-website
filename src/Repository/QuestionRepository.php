@@ -22,7 +22,6 @@ class QuestionRepository extends ServiceEntityRepository
     public function findAllQuestionsWithTags(int $page, int $maxResults)
     {
         $firstResult = ($page - 1) * $maxResults;
-        dump($firstResult);
 
         // FIXME: Max and First results are influenced by join
         return $this->createQueryBuilder('q')
