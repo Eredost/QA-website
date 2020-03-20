@@ -44,4 +44,4 @@ script:
   - ./bin/console lint:xliff translations
   - ./bin/console security:check
   - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
-  - ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
+  - ./bin/phpunit $PHPUNIT_FLAGS
