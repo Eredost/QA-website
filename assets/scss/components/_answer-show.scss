@@ -1,0 +1,31 @@
+.answer-show {
+  @extend .question-card;
+  margin-left: 1em;
+  border-top: 5px solid $color-brand;
+
+  &__content {
+
+    .content__paragraph {
+      font-size: 0.75em;
+      min-height: 60px;
+      line-height: 1.4;
+      background-color: #EEEEEE;
+      border-radius: 5px;
+      padding: 0.5em;
+    }
+  }
+
+  &__footer {
+    text-align: right;
+    padding-top: 0.75em;
+    font-size: 0.6em;
+
+    .footer__credits {
+      color: #888888;
+
+      &--link {
+        color: $color-brand-alt;
+      }
+    }
+  }
+}

@@ -4,4 +4,8 @@
 
 {% block body %}
     {{ include('frontend/layouts/_question-show.html.twig') }}
+
+    {% for answer in question.answers %}
+        {{ include('frontend/layouts/_answer-show.html.twig') }}
+    {% endfor %}
 {% endblock %}
