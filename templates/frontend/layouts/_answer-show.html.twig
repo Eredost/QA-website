@@ -1,0 +1,23 @@
+<div class="answer-show">
+
+    <!-- Card Content -->
+    <div class="answer-show__content">
+
+        <p class="content__paragraph">
+            {{ answer.content }}
+        </p>
+    </div>
+    <!-- Card Content -->
+
+    <!-- Card Footer -->
+    <div class="answer-show__footer">
+
+        <p class="footer__credits">
+            Answered {{ answer.createdAt|date('F d, Y H:i') }} by
+            <a href="#" class="footer__credits--link">
+                {{ answer.user.username }}
+            </a>
+        </p>
+    </div>
+    <!-- Card Footer -->
+</div>
