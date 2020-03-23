@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
-use App\Repository\AnswerRepository;
+use App\Entity\Answer;
 use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -22,20 +24,34 @@ class QuestionController extends AbstractController
      *     name="show",
      *     requirements={"questionId"="\d+"})
      *
-     * @param Question $question
+     * @param QuestionRepository $questionRepository
+     * @param Request            $request
+     * @param int                $questionId
      *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function show(QuestionRepository $questionRepository, AnswerRepository $answerRepository, $questionId)
+    public function show(QuestionRepository $questionRepository, Request $request, int $questionId)
     {
+        $currentPage = $request->query->get('page', 1);
         $question = $questionRepository->findQuestionById($questionId);
 
-        if (is_null($question)) {
+        if (is_null($question) || !preg_match('/\d+/', $currentPage)) {
 
             throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
         }
 
-        $answers = $answerRepository->findAllAnswersByQuestionId($question);
+        $answers = $this->getDoctrine()
+            ->getRepository(Answer::class)
+            ->findAllAnswersByQuestionId($question, $currentPage, 7)
+        ;
+        $answers->lastPage = intval(ceil($answers->count() / 7));
+        $answers->currentPage = intval($currentPage);
+
+        if ($currentPage > $answers->lastPage) {
+
+            throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
+        }
 
         return $this->render('frontend/question/show.html.twig', [
             'question' => $question,
