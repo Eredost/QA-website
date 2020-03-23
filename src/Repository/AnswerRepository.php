@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Answer;
+use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -17,6 +18,24 @@ class AnswerRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Answer::class);
+    }
+
+    /**
+     * @param Question $question
+     *
+     * @return mixed
+     */
+    public function findAllAnswersByQuestionId(Question $question)
+    {
+        return $this->createQueryBuilder('a')
+            ->join('a.user', 'u')
+            ->addSelect('u')
+            ->andWhere('u = :question')
+            ->setParameter('question', $question)
+            ->orderBy('a.createdAt', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**

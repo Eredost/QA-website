@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Question;
+use App\Repository\AnswerRepository;
+use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,18 +18,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
-     * @Route("/{id}",
+     * @Route("/{questionId}",
      *     name="show",
-     *     requirements={"id"="\d+"})
+     *     requirements={"questionId"="\d+"})
      *
      * @param Question $question
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function show(Question $question)
+    public function show(QuestionRepository $questionRepository, AnswerRepository $answerRepository, $questionId)
     {
+        $question = $questionRepository->findQuestionById($questionId);
+
+        if (is_null($question)) {
+
+            throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
+        }
+
+        $answers = $answerRepository->findAllAnswersByQuestionId($question);
+
         return $this->render('frontend/question/show.html.twig', [
             'question' => $question,
+            'answers'  => $answers,
         ]);
     }
 }

@@ -38,4 +38,18 @@
       padding: 0.5em;
     }
   }
+
+  &__footer {
+    text-align: right;
+    padding-top: 0.75em;
+    font-size: 0.6em;
+
+    .footer__credits {
+      color: #888888;
+
+      &--link {
+        color: $color-brand-alt;
+      }
+    }
+  }
 }
