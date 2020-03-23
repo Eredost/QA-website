@@ -6,6 +6,7 @@ use App\Entity\Answer;
 use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * @method Answer|null find($id, $lockMode = null, $lockVersion = null)
@@ -22,20 +23,26 @@ class AnswerRepository extends ServiceEntityRepository
 
     /**
      * @param Question $question
+     * @param int      $page
+     * @param int      $maxResults
      *
      * @return mixed
      */
-    public function findAllAnswersByQuestionId(Question $question)
+    public function findAllAnswersByQuestionId(Question $question, int $page, int $maxResults)
     {
-        return $this->createQueryBuilder('a')
+        $firstResult = ($page - 1) * $maxResults;
+
+        $query = $this->createQueryBuilder('a')
             ->join('a.user', 'u')
             ->addSelect('u')
-            ->andWhere('u = :question')
+            ->andWhere('a.question = :question')
             ->setParameter('question', $question)
             ->orderBy('a.createdAt', 'ASC')
-            ->getQuery()
-            ->getResult()
-            ;
+            ->setMaxResults($maxResults)
+            ->setFirstResult($firstResult)
+        ;
+
+        return new Paginator($query, true);
     }
 
     // /**

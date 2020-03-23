@@ -14,4 +14,14 @@
         } only %}
     {% endfor %}
 
+    {% if answers.lastPage > 1 %}
+        {% include('frontend/layouts/_paginator.html.twig') with {
+            'currentPage': answers.currentPage,
+            'lastPage': answers.lastPage,
+            'options': {
+                'questionId': question.id
+            }
+        } only %}
+    {% endif %}
+
 {% endblock %}
