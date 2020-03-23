@@ -3,9 +3,15 @@
 {% block title %}Question{% endblock %}
 
 {% block body %}
-    {{ include('frontend/layouts/_question-show.html.twig') }}
 
-    {% for answer in question.answers %}
-        {{ include('frontend/layouts/_answer-show.html.twig') }}
+    {% include('frontend/layouts/_question-show.html.twig') with {
+        'question': question
+    } only %}
+
+    {% for answer in answers %}
+        {% include('frontend/layouts/_answer-show.html.twig') with {
+            'answer': answer
+        } only %}
     {% endfor %}
+
 {% endblock %}

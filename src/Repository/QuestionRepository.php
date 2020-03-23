@@ -20,6 +20,12 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+    /**
+     * @param int $page
+     * @param int $maxResults
+     *
+     * @return Paginator
+     */
     public function findAllQuestionsWithTags(int $page, int $maxResults)
     {
         $firstResult = ($page - 1) * $maxResults;
@@ -34,6 +40,26 @@ class QuestionRepository extends ServiceEntityRepository
         ;
 
         return new Paginator($query, true);
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findQuestionById(int $id)
+    {
+        return $this->createQueryBuilder('q')
+            ->join('q.tags', 't')
+            ->addSelect('t')
+            ->join('q.user', 'u')
+            ->addSelect('u')
+            ->andWhere('q.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
 
     // /**

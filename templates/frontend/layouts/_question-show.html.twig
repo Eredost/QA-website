@@ -10,9 +10,7 @@
         </div>
 
         <h3 class="head__title">
-            <a href="{{ path('question_show', {'id': question.id}) }}">
-                {{ question.title }}
-            </a>
+            {{ question.title }}
         </h3>
     </div>
     <!-- Card Head -->
@@ -25,5 +23,15 @@
         </p>
     </div>
     <!--Card Content -->
+
+    <div class="question-show__footer">
+
+        <p class="footer__credits">
+            Asked by
+            <a href="#" class="footer__credits--link">
+                {{ question.user.username }}
+            </a>
+        </p>
+    </div>
 
 </div>
