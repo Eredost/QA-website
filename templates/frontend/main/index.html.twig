@@ -14,10 +14,15 @@
         } only %}
     {% endfor %}
 
-    {% include('frontend/layouts/_paginator.html.twig') with {
-        'currentPage': questions.currentPage,
-        'lastPage': questions.lastPage,
-        'maxResults': questions.maxResults
-    } only %}
+    {% if questions.lastPage > 1 %}
+        {% include('frontend/layouts/_paginator.html.twig') with {
+            'currentPage': questions.currentPage,
+            'lastPage': questions.lastPage,
+            'maxResults': questions.maxResults,
+            'options': {
+                'q': app.request.query.get('q')
+            }
+        } only %}
+    {% endif %}
 
 {% endblock %}
