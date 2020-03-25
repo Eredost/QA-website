@@ -42,7 +42,11 @@ class AnswerRepository extends ServiceEntityRepository
             ->setFirstResult($firstResult)
         ;
 
-        return new Paginator($query, true);
+        $paginator = new Paginator($query, true);
+        $paginator->lastPage = intval(ceil($paginator->count() / $maxResults));
+        $paginator->currentPage = intval($page);
+
+        return $paginator;
     }
 
     // /**

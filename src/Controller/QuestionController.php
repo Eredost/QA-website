@@ -45,8 +45,6 @@ class QuestionController extends AbstractController
             ->getRepository(Answer::class)
             ->findAllAnswersByQuestionId($question, $currentPage, 7)
         ;
-        $answers->lastPage = intval(ceil($answers->count() / 7));
-        $answers->currentPage = intval($currentPage);
 
         if ($currentPage > $answers->lastPage) {
 
