@@ -1,6 +1,7 @@
 <!-- Paginator -->
 <div class="paginator">
 
+    <!-- Previous Button -->
     <a
         {% if currentPage > 1 %}
             href="{{ path(app.request.get('_route'), {'page': currentPage - 1}|merge(options ?? [])) }}"
@@ -11,6 +12,20 @@
     >
         << Previous
     </a>
+    <!-- Previous Button -->
+
+    {% if currentPage > 2 %}
+        <a
+                href="{{ path(app.request.get('_route'), {'page': 1}|merge(options ?? [])) }}"
+                class="paginator__page">
+            1
+        </a>
+
+        <div
+            class="paginator__page seperator">
+            ...
+        </div>
+    {% endif %}
 
     {% if currentPage > 1 %}
         <a
@@ -39,11 +54,18 @@
 
     {% if (currentPage + 3) <= lastPage %}
         <div
-            class="paginator__page">
+            class="paginator__page seperator">
             ...
         </div>
+
+        <a
+            href="{{ path(app.request.get('_route'), {'page': lastPage}|merge(options ?? [])) }}"
+            class="paginator__page">
+            {{ lastPage }}
+        </a>
     {% endif %}
 
+    <!-- Next Button -->
     <a
         {% if currentPage != lastPage %}
             href="{{ path(app.request.get('_route'), {'page': currentPage + 1}|merge(options ?? [])) }}"
@@ -54,6 +76,7 @@
     >
         Next >>
     </a>
+    <!-- Next Button -->
 
 </div>
 <!-- Paginator -->
