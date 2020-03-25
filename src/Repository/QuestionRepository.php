@@ -6,6 +6,7 @@ use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @method Question|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,15 +21,30 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
+
     /**
-     * @param int $page
-     * @param int $maxResults
+     * @param Request $request
      *
      * @return Paginator
      */
-    public function findAllQuestionsWithTags(int $page, int $maxResults)
+    public function findAllQuestionsWithTags(Request $request)
     {
-        $firstResult = ($page - 1) * $maxResults;
+        $currentPage = $request->query->get('page', 1);
+        $maxResults = $request->query->get('maxresults', 10);
+
+        if (!preg_match('/\d+/', $currentPage)
+            || $currentPage < 1) {
+            $currentPage = 1;
+            $request->query->set('page', 1);
+        }
+
+        if (!preg_match('/\d+/', $maxResults)
+            || $maxResults < 1) {
+            $maxResults = 10;
+            $request->query->set('maxresults', 10);
+        }
+
+        $firstResult = ($currentPage - 1) * $maxResults;
 
         $query = $this->createQueryBuilder('q')
             ->join('q.tags', 't')
@@ -39,7 +55,12 @@ class QuestionRepository extends ServiceEntityRepository
             ->setFirstResult($firstResult)
         ;
 
-        return new Paginator($query, true);
+        $paginator = new Paginator($query, true);
+        $paginator->lastPage = intval(ceil($paginator->count() / $maxResults));
+        $paginator->currentPage = intval($currentPage);
+        $paginator->maxResults = intval($maxResults);
+
+        return $paginator;
     }
 
     /**

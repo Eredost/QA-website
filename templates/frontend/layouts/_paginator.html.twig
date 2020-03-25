@@ -8,7 +8,7 @@
 
     <a
         {% if currentPage > 1 %}
-            href="{{ path(app.request.get('_route'), {'page': currentPage - 1}|merge(optionsArray)) }}"
+            href="{{ path(app.request.get('_route'), {'page': currentPage - 1, 'maxresults': maxResults}|merge(optionsArray)) }}"
             class="paginator__previous"
         {% else %}
             class="paginator__previous disabled"
@@ -19,7 +19,7 @@
 
     {% if currentPage > 1 %}
         <a
-            href="{{ path(app.request.get('_route'), {'page': currentPage - 1}|merge(optionsArray)) }}"
+            href="{{ path(app.request.get('_route'), {'page': currentPage - 1, 'maxresults': maxResults}|merge(optionsArray)) }}"
             class="paginator__page"
         >
             {{ currentPage - 1 }}
@@ -27,7 +27,7 @@
     {% endif %}
 
     <a
-        href="{{ path(app.request.get('_route'), {'page': currentPage}|merge(optionsArray)) }}"
+        href="{{ path(app.request.get('_route'), {'page': currentPage, 'maxresults': maxResults}|merge(optionsArray)) }}"
         class="paginator__page active">
         {{ currentPage }}
     </a>
@@ -35,7 +35,7 @@
     {% for i in 1..2 %}
         {% if (currentPage + i) <= lastPage %}
             <a
-                href="{{ path(app.request.get('_route'), {'page': currentPage + i}|merge(optionsArray)) }}"
+                href="{{ path(app.request.get('_route'), {'page': currentPage + i, 'maxresults': maxResults}|merge(optionsArray)) }}"
                 class="paginator__page">
                 {{ currentPage + i }}
             </a>
@@ -51,7 +51,7 @@
 
     <a
         {% if currentPage != lastPage %}
-            href="{{ path(app.request.get('_route'), {'page': currentPage + 1}|merge(optionsArray)) }}"
+            href="{{ path(app.request.get('_route'), {'page': currentPage + 1, 'maxresults': maxResults}|merge(optionsArray)) }}"
             class="paginator__next"
         {% else %}
             class="paginator__next disabled"
