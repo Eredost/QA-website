@@ -21,7 +21,6 @@ class QuestionRepository extends ServiceEntityRepository
         parent::__construct($registry, Question::class);
     }
 
-
     /**
      * @param Request $request
      *
@@ -54,6 +53,14 @@ class QuestionRepository extends ServiceEntityRepository
             ->setMaxResults($maxResults)
             ->setFirstResult($firstResult)
         ;
+
+        if ($searchQ = $request->query->get('q')) {
+            $query
+                ->orWhere('q.title LIKE :searchQ')
+                ->orWhere('q.content LIKE :searchQ')
+                ->setParameter('searchQ', '%'.$searchQ.'%')
+            ;
+        }
 
         $paginator = new Paginator($query, true);
         $paginator->lastPage = intval(ceil($paginator->count() / $maxResults));
