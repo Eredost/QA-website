@@ -18,9 +18,9 @@
         {% include('frontend/layouts/_paginator.html.twig') with {
             'currentPage': questions.currentPage,
             'lastPage': questions.lastPage,
-            'maxResults': questions.maxResults,
             'options': {
-                'q': app.request.query.get('q')
+                'q': app.request.query.get('q'),
+                'maxResults': questions.maxResults
             }
         } only %}
     {% endif %}
