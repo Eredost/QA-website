@@ -51,6 +51,10 @@
     &.active {
       border-right: 1px solid $color-brand;
     }
+
+    &.seperator {
+      pointer-events: none;
+    }
   }
 
   &__next {
