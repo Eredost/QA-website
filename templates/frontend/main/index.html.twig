@@ -4,6 +4,10 @@
 
 {% block body %}
 
+    {% if search is defined %}
+        {{ search }}
+    {% endif %}
+
     {% for question in questions %}
         {% include('frontend/layouts/_question-card.html.twig') with {
             'question': question
@@ -12,7 +16,8 @@
 
     {% include('frontend/layouts/_paginator.html.twig') with {
         'currentPage': questions.currentPage,
-        'lastPage': questions.lastPage
+        'lastPage': questions.lastPage,
+        'maxResults': questions.maxResults
     } only %}
 
 {% endblock %}

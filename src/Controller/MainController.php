@@ -22,17 +22,9 @@ class MainController extends AbstractController
      */
     public function home(QuestionRepository $questionRepository, Request $request)
     {
-        $currentPage = $request->query->get('page', 1);
-        if (!preg_match('/\d+/', $currentPage)
-            || $currentPage < 1) {
-            $currentPage = 1;
-        }
+        $questions = $questionRepository->findAllQuestionsWithTags($request);
 
-        $questions = $questionRepository->findAllQuestionsWithTags($currentPage, 10);
-        $questions->lastPage = intval(ceil($questions->count() / 10));
-        $questions->currentPage = intval($currentPage);
-
-        if ($currentPage > $questions->lastPage) {
+        if ($request->query->get('page') > $questions->lastPage) {
 
             throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
         }
