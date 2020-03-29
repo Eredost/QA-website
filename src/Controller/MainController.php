@@ -45,4 +45,28 @@ class MainController extends AbstractController
     {
         return $this->render('frontend/main/legalMentions.html.twig');
     }
+
+    /**
+     * @Route("/about",
+     *     name="about",
+     *     methods={"GET"})
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function about()
+    {
+        return $this->render('frontend/main/about.html.twig');
+    }
+
+    /**
+     * @Route("/contact-us",
+     *     name="contactUs",
+     *     methods={"GET", "POST"})
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function contactUs()
+    {
+        return $this->render('frontend/main/contactUs.html.twig');
+    }
 }
