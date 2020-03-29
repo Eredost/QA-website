@@ -1,0 +1,28 @@
+.list {
+  color: $color-text-alt;
+
+  &__item + &__item {
+    margin-top: 1em;
+  }
+
+  &__item {
+    font-weight: bold;
+
+
+    &--link {
+      color: $color-brand;
+      text-decoration: underline;
+      transition: color $duration-fast;
+      font-weight: 400;
+
+      &:hover {
+        color: $color-brand-alt;
+      }
+    }
+
+    &--answer {
+      font-weight: 400;
+      font-style: italic;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.title {
+  color: $color-text-alt;
+  margin-bottom: 0.8em;
+  letter-spacing: 0.05em;
+
+  &--big {
+    font-size: 1.9em;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 1em;
+
+    border-bottom: 2px solid $color-text-alt;
+    padding-bottom: 0.6em;
+  }
+
+  &--medium {
+    color: $color-text-alt;
+    font-size: 1.5em;
+    padding-left: 1em;
+    margin-top: 2em;
+  }
+}

@@ -33,4 +33,16 @@ class MainController extends AbstractController
             'questions' => $questions,
         ]);
     }
+
+    /**
+     * @Route("/legal-mentions",
+     *     name="legalMentions",
+     *     methods={"GET"})
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function legalMentions()
+    {
+        return $this->render('frontend/main/legalMentions.html.twig');
+    }
 }
