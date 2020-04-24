@@ -1,0 +1,11 @@
+.paragraph {
+  color: $color-text-alt-darkened;
+  line-height: 1.4;
+  margin-bottom: 0.8em;
+
+  &--bolder {
+    font-weight: 500;
+    color: $color-text-alt;
+    display: block;
+  }
+}

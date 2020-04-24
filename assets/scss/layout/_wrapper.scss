@@ -7,7 +7,6 @@
   border-radius: 5px;
 
   &__content {
-    width: 70%;
     padding: 1.5em 1em;
 
     // FIXME
@@ -15,7 +14,18 @@
   }
 
   &__sidebar {
-    width: 30%;
     padding: 1.5em 1em;
+  }
+
+  &--three-quarters {
+    width: 70%;
+  }
+
+  &--quarter {
+    width: 30%;
+  }
+
+  &--full {
+    width: 100%;
   }
 }

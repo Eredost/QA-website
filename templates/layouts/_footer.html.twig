@@ -8,7 +8,7 @@
 
             <div class="column__head">
                 <h4 class="head__title">
-                    QAWebsite
+                    AnsFrame
                 </h4>
             </div>
             <div class="column__content">
@@ -45,22 +45,25 @@
         <div class="grid__column quarter">
             <div class="column__head">
                 <h4 class="head__title">
-                    Popular Tags
+                    Company
                 </h4>
             </div>
             <div class="column__content">
                 <ul class="content__list">
                     <li class="list__item">
-                        <a href="#">Lorem ipsum</a>
+                        <a href="{{ path('legalMentions') }}">
+                            Legal Mentions
+                        </a>
                     </li>
                     <li class="list__item">
-                        <a href="#">Lorem ipsum</a>
+                        <a href="{{ path('about') }}">
+                            About
+                        </a>
                     </li>
                     <li class="list__item">
-                        <a href="#">Lorem ipsum</a>
-                    </li>
-                    <li class="list__item">
-                        <a href="#">Lorem ipsum</a>
+                        <a href="{{ path('contactUs') }}">
+                            Contact Us
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -71,7 +74,7 @@
 
     {# Footer Copyrights #}
     <div class="footer__copyrights">
-        © 2020 Copyright: <a href="#">QAWebsite.com</a>
+        © 2020 Copyright: <a href="{{ path('home') }}">AnsFrame.io</a>
     </div>
     {# Footer Copyrights #}
 

@@ -1,0 +1,148 @@
+{% set contentFullWidth = false %}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Legal mentions{% endblock %}
+
+{% block body %}
+    <h2 class="title title--big">
+        Legal Mentions
+    </h2>
+
+    {# Identity Section #}
+    <h3 class="title title--medium">
+        Identity
+    </h3>
+
+    <ul class="list">
+
+        <li class="list__item">
+            Website name:
+            <span class="list__item--answer">AnsFrame<span>
+        </li>
+
+        <li class="list__item">
+            URL:
+            <a href="{{ absolute_url(path('home')) }}" class="list__item--link">
+                {{ absolute_url(path('home')) }}
+            </a>
+        </li>
+
+        <li class="list__item">
+            Owner:
+            <a href="https://www.linkedin.com/in/michael-coutin/" class="list__item--link">
+                Michaël C. aka Eredost | Naigito
+            </a>
+        </li>
+
+        <li class="list__item">
+            Design and production:
+            <span class="list__item--answer">Same as for the owner<span>
+        </li>
+
+        <li class="list__item">
+            Web Hosting service:
+            <a href="#" class="list__item--link">
+                Not host yet
+            </a>
+        </li>
+
+    </ul>
+    {# Identity Section #}
+
+    {# Terms Of Use Section #}
+    <h3 class="title title--medium">
+        Terms of use
+    </h3>
+
+    <p class="paragraph">
+        The use of this site implies full acceptance of the general conditions of use described below. These conditions of use may be modified or supplemented at any time.
+    </p>
+    {# Terms Of Use Section #}
+
+    {# Information Section #}
+    <h3 class="title title--medium">
+        Information
+    </h3>
+
+    <p class="paragraph">
+        The information and documents of the site are presented for information only, are not exhaustive, and cannot engage the responsibility of the owner of the site.
+    </p>
+
+    <p class="paragraph">
+        The site owner cannot be held responsible for direct and indirect damage resulting from access to the site.
+    </p>
+    {# Information Section #}
+
+    {# Interactivity Section #}
+    <h3 class="title title--medium">
+        Interactivity
+    </h3>
+
+    <p class="paragraph">
+        Website users may optionally post content there, appearing on the site in dedicated areas (in particular via questions and answers). The content deposited remains under the responsibility of their authors, who fully assume full legal responsibility.
+    </p>
+
+    <div class="paragraph">
+        The owner of the site reserves the right to withdraw without notice and without justification any content posted by users that does not comply with the ethical charter of the site or the legislation in force.
+    </div>
+    {# Interactivity Section #}
+
+    {# Intellectual Section #}
+    <h3 class="title title--medium">
+        Intellectual property
+    </h3>
+
+    <p class="paragraph">
+        Unless otherwise stated, all elements accessible on the site (texts, images, graphics, logo, icons, sounds, software, etc.) remain the exclusive property of their authors, with regard to intellectual property rights or the rights of 'use.
+    </p>
+
+    <p class="paragraph">
+        Any reproduction, representation, modification, publication, adaptation of all or part of the elements of the site, regardless of the means or process used, is prohibited without the prior written permission of the author.
+    </p>
+
+    <p class="paragraph">
+        Any unauthorized use of the site or any of the elements it contains is considered to constitute an infringement and may be prosecuted.
+    </p>
+
+    <p class="paragraph">
+        The brands and logos reproduced on the site are registered by the companies which own them.
+    </p>
+    {# Intellectual Section #}
+
+    {# Links Section #}
+    <h3 class="title title--medium">
+        Links
+    </h3>
+
+    <p class="paragraph">
+        <span class="paragraph--bolder">Outgoing Links</span>
+        The owner of the site declines all responsibility and is not engaged by the referencing via hypertext links, of third resources present on the Internet network, as regards their content as their relevance.
+    </p>
+
+    <p class="paragraph">
+        <span class="paragraph--bolder">Incoming links</span>
+        The owner of the site authorizes hypertext links to one of the pages of this site, provided that these open a new window and are presented unequivocally in order to avoid: any risk of confusion between the citing site and the owner of the site as well as any tendentious presentation, or contrary to the laws in force.
+    </p>
+
+    <p class="paragraph">
+        The owner of the site reserves the right to request the removal of a link if he considers that the source site does not respect the rules thus defined.
+    </p>
+    {# Links Section #}
+
+    {# Confidentiality Section #}
+    <h3 class="title title--medium">
+        Confidentiality
+    </h3>
+
+    <p class="paragraph">
+        Any user has a right of access, rectification and opposition to personal data concerning him, by making his written and signed request, accompanied by proof of identity.
+    </p>
+
+    <p class="paragraph">
+        The site does not collect personal information, and is not subject to declaration to the CNIL.
+    </p>
+    {# Confidentiality Section #}
+
+{% endblock %}
+

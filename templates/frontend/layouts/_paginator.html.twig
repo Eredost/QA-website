@@ -16,8 +16,8 @@
 
     {% if currentPage > 2 %}
         <a
-                href="{{ path(app.request.get('_route'), {'page': 1}|merge(options ?? [])) }}"
-                class="paginator__page">
+            href="{{ path(app.request.get('_route'), {'page': 1}|merge(options ?? [])) }}"
+            class="paginator__page">
             1
         </a>
 
