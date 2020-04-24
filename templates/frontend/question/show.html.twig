@@ -8,6 +8,10 @@
         'question': question
     } only %}
 
+    {% include('frontend/layouts/_answer-form.html.twig') with {
+        'answerForm': answerForm
+    } %}
+
     {% for answer in answers %}
         {% include('frontend/layouts/_answer-show.html.twig') with {
             'answer': answer

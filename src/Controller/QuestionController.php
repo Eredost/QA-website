@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Answer;
+use App\Form\AnswerType;
 use App\Repository\QuestionRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -22,7 +24,8 @@ class QuestionController extends AbstractController
     /**
      * @Route("/{questionId}",
      *     name="show",
-     *     requirements={"questionId"="\d+"})
+     *     requirements={"questionId"="\d+"},
+     *     methods={"GET", "POST"})
      *
      * @param QuestionRepository $questionRepository
      * @param Request            $request
@@ -31,7 +34,7 @@ class QuestionController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function show(QuestionRepository $questionRepository, Request $request, int $questionId)
+    public function show(UserRepository $userRepository, QuestionRepository $questionRepository, Request $request, int $questionId)
     {
         $currentPage = $request->query->get('page', 1);
         $question = $questionRepository->findQuestionById($questionId);
@@ -51,9 +54,28 @@ class QuestionController extends AbstractController
             throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
         }
 
+        $newAnswer = new Answer();
+        $user = $userRepository->findAll();
+        $newAnswer->setUser($user[0]);
+        $newAnswer->setQuestion($question);
+        $answerForm = $this->createForm(AnswerType::class, $newAnswer);
+        $answerForm->handleRequest($request);
+
+        if ($answerForm->isSubmitted() && $answerForm->isValid()) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newAnswer);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('question_show', [
+                'questionId' => $question->getId(),
+            ]);
+        }
+
         return $this->render('frontend/question/show.html.twig', [
-            'question' => $question,
-            'answers'  => $answers,
+            'question'   => $question,
+            'answers'    => $answers,
+            'answerForm' => $answerForm->createView(),
         ]);
     }
 }
