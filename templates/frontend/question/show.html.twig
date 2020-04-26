@@ -4,20 +4,27 @@
 
 {% block body %}
 
+    {# Question display #}
     {% include('frontend/layouts/_question-show.html.twig') with {
         'question': question
     } only %}
+    {# Question display #}
 
+    {# New Answer form #}
     {% include('frontend/layouts/_answer-form.html.twig') with {
         'answerForm': answerForm
     } %}
+    {# New Answer form #}
 
+    {# Answers #}
     {% for answer in answers %}
         {% include('frontend/layouts/_answer-show.html.twig') with {
             'answer': answer
         } only %}
     {% endfor %}
+    {# Answers #}
 
+    {# Paginator #}
     {% if answers.lastPage > 1 %}
         {% include('frontend/layouts/_paginator.html.twig') with {
             'currentPage': answers.currentPage,
@@ -27,5 +34,6 @@
             }
         } only %}
     {% endif %}
+    {# Paginator #}
 
 {% endblock %}

@@ -21,7 +21,7 @@
     {#Card Excerpt #}
     <div class="question-card__excerpt">
         <p class="excerpt__content">
-            {{ question.content|truncate(300, '...') }}
+            {{ question.content|truncate(300, '...')|nl2br }}
         </p>
     </div>
     {#Card Excerpt #}

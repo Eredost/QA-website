@@ -54,6 +54,7 @@ class QuestionController extends AbstractController
             throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
         }
 
+        // FIXME: delete $user after implementing connection feature
         $newAnswer = new Answer();
         $user = $userRepository->findAll();
         $newAnswer->setUser($user[0]);

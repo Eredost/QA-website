@@ -19,4 +19,14 @@
     padding-left: 1em;
     margin-top: 2em;
   }
+
+  &--small {
+    font-size: 1.1em;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5em;
+  }
+
+  &.black {
+    color: $color-text;
+  }
 }
