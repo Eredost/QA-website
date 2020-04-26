@@ -1,6 +1,6 @@
 # Welcome on AnsFrame
 
-[![Build Status](https://travis-ci.com/Eredost/UbberAnswers.svg?branch=master)](https://travis-ci.com/Eredost/UbberAnswers)
+[![Build Status](https://travis-ci.com/Eredost/AnsFrame.svg?branch=master)](https://travis-ci.com/Eredost/AnsFrame)
 
 **Project on the same principle as the StackOverflow or Quora site. Users can sign up to ask and answer questions.**
 
