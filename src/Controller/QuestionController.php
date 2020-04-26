@@ -49,7 +49,7 @@ class QuestionController extends AbstractController
             ->findAllAnswersByQuestionId($question, $currentPage, 7)
         ;
 
-        if ($currentPage > $answers->lastPage) {
+        if ($currentPage > $answers->lastPage && 0 != $answers->lastPage) {
 
             throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
         }
