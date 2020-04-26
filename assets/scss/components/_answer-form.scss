@@ -1,0 +1,33 @@
+.answer-form {
+  @extend .question-card;
+  border-top: 5px solid #ffbb33;
+
+  &__message {
+    width: 100%;
+    min-height: 130px;
+    font-size: 0.75em;
+    border: 2px solid $color-text-alt-darkened;
+    border-radius: 2px;
+    padding: 0.4em 0.2em;
+    resize: none;
+  }
+
+  &__submit {
+    float: right;
+    margin-top: 0.5em;
+    font-size: 0.75em;
+    padding: 0.25em 1.2em;
+    font-weight: 500;
+    background-color: $color-brand;
+    color: #FFF;
+    border: 2px solid $color-brand;
+    border-radius: 4px;
+    transition: $duration-fast;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #FFF;
+      color: $color-brand;
+    }
+  }
+}

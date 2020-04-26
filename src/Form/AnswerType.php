@@ -14,7 +14,8 @@ class AnswerType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                'attr' => [
+                'label' => false,
+                'attr'  => [
                     'class'       => 'answer-form__message',
                     'placeholder' => 'Lorem ipsum dolor sit amet...',
                 ],
@@ -27,7 +28,7 @@ class AnswerType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Answer::class,
             'attr' => [
-                'class' => 'answer-form',
+                'class' => 'answer-form clear',
             ],
         ]);
     }
