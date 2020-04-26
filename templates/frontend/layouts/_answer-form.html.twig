@@ -2,7 +2,13 @@
 
     <h4 class="title title--small black">Submit an answer</h4>
 
-    {{ form_row(answerForm.content) }}
+    <div class="
+        {% if not answerForm.content.vars.valid %}has-error{% endif %}
+    ">
+        {{ form_errors(answerForm.content) }}
+        {{ form_widget(answerForm.content) }}
+    </div>
 
     <input type="submit" value="Submit" class="answer-form__submit">
+
 {{ form_end(answerForm) }}

@@ -25,13 +25,13 @@ class Question
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *     message = "Le titre ne peut pas être vide"
+     *     message = "The title could not be blank"
      * )
      * @Assert\Length(
      *     min = 10,
      *     max = 255,
-     *     minMessage = "Le titre doit au minimum contenir {{ limit }} caractères",
-     *     maxMessage = "Le titre doit au maximum contenir {{ limit }} caractères"
+     *     minMessage = "The title should contain at least {{ limit }} characters",
+     *     maxMessage = "The title should contain a maximum of {{ limit }} characters"
      * )
      */
     private $title;
@@ -39,13 +39,13 @@ class Question
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(
-     *     message = "Le titre ne peut pas être vide"
+     *     message = "The content could not be blank"
      * )
      * @Assert\Length(
      *     min = 10,
      *     max = 8000,
-     *     minMessage = "Le contenu doit au minimum contenir {{ limit }} caractères",
-     *     maxMessage = "Le contenu doit au maximum contenir {{ limit }} caractères"
+     *     minMessage = "The content should contain at least {{ limit }} characters",
+     *     maxMessage = "The content should contain a maximum of {{ limit }} characters"
      * )
      */
     private $content;
@@ -53,7 +53,7 @@ class Question
     /**
      * @ORM\Column(type="integer")
      * @Assert\PositiveOrZero(
-     *     message = "Le nombre de votes ne peut pas être négatif"
+     *     message = "The number of votes cannot be negative"
      * )
      */
     private $votes;

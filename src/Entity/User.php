@@ -27,12 +27,14 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message = "The username could not be blank"
+     * )
      * @Assert\Length(
      *     min = 5,
      *     max = 15,
-     *     minMessage = "Le nom d'utilisateur doit au minimum contenir {{ limit }} caractères",
-     *     maxMessage = "Le nom d'utilisateur doit au maximum contenir {{ limit }} caractères"
+     *     minMessage = "The username should contain at least {{ limit }} characters",
+     *     maxMessage = "The username should contain a maximum of {{ limit }} characters"
      * )
      */
     private $username;
@@ -45,12 +47,14 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(
+     *     message = "The password could not be blank"
+     * )
      * @Assert\Length(
      *     min = 5,
      *     max = 18,
-     *     minMessage = "Le mot de passe doit au minimum contenir {{ limit }} caractères",
-     *     maxMessage = "Le mot de passe doit au maximum contenir {{ limit }} caractères"
+     *     minMessage = "The password should contain at least {{ limit }} characters",
+     *     maxMessage = "The password should contain a maximum of {{ limit }} characters"
      * )
      */
     private $password;
@@ -59,7 +63,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=20, nullable=true)
      * @Assert\Regex(
      *     pattern = "/^(\w{3,20})?$/u",
-     *     message = "Le prénom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
+     *     message = "The firstname should contain between 3 and 20 characters and must not include special characters"
      * )
      */
     private $firstname;
@@ -68,7 +72,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=20, nullable=true)
      * @Assert\Regex(
      *     pattern = "/^(\w{3,20})?$/u",
-     *     message = "Le nom doit contenir entre 3 et 20 caractères et ne doit pas contenir de caractères spéciaux"
+     *     message = "The lastname should contain between 3 and 20 characters and must not include special characters"
      * )
      */
     private $lastname;
@@ -77,7 +81,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Regex(
      *     pattern = "/^((https:\/\/)?github\.com\/.*)?$/",
-     *     message = "L'url n'est pas valide"
+     *     message = "The url is not valid"
      * )
      */
     private $github;

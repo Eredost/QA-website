@@ -30,4 +30,17 @@
       color: $color-brand;
     }
   }
+
+  .has-error {
+
+    li {
+      color: #CC0000;
+      font-size: 0.75em;
+      margin-bottom: 0.4em;
+    }
+
+    .answer-form__message {
+      border: 2px solid #ff4444;
+    }
+  }
 }

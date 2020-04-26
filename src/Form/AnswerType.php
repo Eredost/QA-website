@@ -28,6 +28,7 @@ class AnswerType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Answer::class,
             'attr' => [
+                'novalidate' => true,
                 'class' => 'answer-form clear',
             ],
         ]);
