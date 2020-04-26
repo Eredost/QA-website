@@ -23,11 +23,11 @@ class Answer
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(
-     *     message = "Le contenu du message ne peut pas être vide"
+     *     message = "The content could not be blank"
      * )
      * @Assert\Length(
      *     min = 10,
-     *     minMessage = "Le contenu du message doit contenir au minimum {{ limit }} caractères"
+     *     minMessage = "The content should contain at least {{ limit }} characters"
      * )
      */
     private $content;
@@ -52,7 +52,7 @@ class Answer
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(
-     *     message = "Ce champ de saisie ne peut pas être vide"
+     *     message = "The answer must belong to a user"
      * )
      */
     private $user;
@@ -61,7 +61,7 @@ class Answer
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotBlank(
-     *     message = "Ce champ de saisie ne peut pas être vide"
+     *     message = "The answer must belong to a question"
      * )
      */
     private $question;

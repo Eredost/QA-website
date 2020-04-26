@@ -23,13 +23,13 @@ class Role
     /**
      * @ORM\Column(type="string", length=20)
      * @Assert\NotBlank(
-     *     message = "La saisie du nom est obligatoire"
+     *     message = "The name could not be blank"
      * )
      * @Assert\Length(
      *     min = 5,
      *     max = 20,
-     *     minMessage = "Le nom doit contenir au minimum {{ limit }} caractères",
-     *     maxMessage = "Le nom doit contenir au maximum {{ limit }} caractères"
+     *     minMessage = "The name should contain at least {{ limit }} characters",
+     *     maxMessage = "The name should contain a maximum of {{ limit }} characters"
      * )
      */
     private $name;
