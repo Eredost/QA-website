@@ -24,26 +24,36 @@
             </form>
         </div>
 
-        {#
-        <div class="profile__unenrolled">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-            <ul class="unenrolled__links">
-                <li>
-                    <a href="#">Register</a>
-                </li>
-                <li>
-                    <a href="#">Log In</a>
-                </li>
-            </ul>
-        </div>
-        #}
-
-        <div class="profile__registered">
+            <div class="profile__registered">
 
             <span>
                 <img class="profile__picture" src="{{ asset('build/profile.png') }}" alt="profile picture">
             </span>
-        </div>
+            </div>
+
+        {% else %}
+
+            <div class="profile__unenrolled">
+
+                <ul class="unenrolled__links">
+                    <li>
+                        <a href="{{ path('app_register') }}">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            Register
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('app_login') }}">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                            Log In
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+        {% endif %}
 
     </div>
     {# Profile #}
