@@ -26,6 +26,7 @@ class UserFixture extends BaseFixture implements DependentFixtureInterface
                 ->setRoles(['ROLE_USER'])
                 ->setFirstname($this->faker->firstName)
                 ->setLastname($this->faker->lastName)
+                ->setAgreeTerms(new \DateTime())
             ;
             $userEntity
                 ->setGithub('https://github.com/' . $userEntity->getUsername())
@@ -39,6 +40,7 @@ class UserFixture extends BaseFixture implements DependentFixtureInterface
         $moderatorUserEntity = (new User())
             ->setUsername('moderator')
             ->setRoles(['ROLE_MODERATOR'])
+            ->setAgreeTerms(new \DateTime())
         ;
         $moderatorUserEntity->setPassword($this->encoder->encodePassword($moderatorUserEntity, 'password'));
         $manager->persist($moderatorUserEntity);
@@ -47,6 +49,7 @@ class UserFixture extends BaseFixture implements DependentFixtureInterface
         $adminUserEntity = (new User())
             ->setUsername('admin')
             ->setRoles(['ROLE_ADMIN'])
+            ->setAgreeTerms(new \DateTime())
         ;
         $adminUserEntity->setPassword($this->encoder->encodePassword($adminUserEntity, 'password'));
         $manager->persist($adminUserEntity);

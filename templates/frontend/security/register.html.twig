@@ -113,19 +113,19 @@
 
         {# TermsAgree field #}
         <div class="form--row
-                {% if not registerForm.termsAgree.vars.valid %}has-error{% endif %}
+                {% if not registerForm.agreeTerms.vars.valid %}has-error{% endif %}
             ">
-            {{ form_widget(registerForm.termsAgree, {
+            {{ form_widget(registerForm.agreeTerms, {
                 'attr': {
                     'class': 'form__widget'
                 }
             }) }}
 
-            <label for="{{ registerForm.termsAgree.vars.id }}" class="form__label required">
-                {{ registerForm.termsAgree.vars.label|raw }}
+            <label for="{{ registerForm.agreeTerms.vars.id }}" class="form__label required">
+                {{ registerForm.agreeTerms.vars.label|raw }}
             </label>
 
-            {{ form_errors(registerForm.termsAgree, {
+            {{ form_errors(registerForm.agreeTerms, {
                 'attr': {
                     'class': 'form__error'
                 }
