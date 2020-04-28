@@ -6,8 +6,134 @@
 
 {% block body %}
 
+    <h2 class="title title--big">Create a new account</h2>
+
     <div class="form">
         {{ form_start(registerForm) }}
+
+        {# Firstname field #}
+        <div class="form--row row--half
+            {% if not registerForm.firstname.vars.valid %}has-error{% endif %}
+        ">
+            {{ form_label(registerForm.firstname, null, {
+                'attr': {
+                    'class': 'form__label'
+                }
+            }) }}
+
+            {{ form_errors(registerForm.firstname, {
+                'attr': {
+                    'class': 'form__error'
+                }
+            }) }}
+
+            {{ form_widget(registerForm.firstname, {
+                'attr': {
+                    'class': 'form__widget',
+                    'placeholder': 'Michael'
+                }
+            }) }}
+        </div>
+        {# Firstname field #}
+
+        {# Lastname field #}
+        <div class="form--row row--half
+                {% if not registerForm.lastname.vars.valid %}has-error{% endif %}
+            ">
+            {{ form_label(registerForm.lastname, null, {
+                'attr': {
+                    'class': 'form__label'
+                }
+            }) }}
+
+            {{ form_errors(registerForm.lastname, {
+                'attr': {
+                    'class': 'form__error'
+                }
+            }) }}
+
+            {{ form_widget(registerForm.lastname, {
+                'attr': {
+                    'class': 'form__widget',
+                    'placeholder': 'Coutin'
+                }
+            }) }}
+        </div>
+        {# Lastname field #}
+
+        {# Username field #}
+        <div class="form--row
+                {% if not registerForm.username.vars.valid %}has-error{% endif %}
+            ">
+            {{ form_label(registerForm.username, null, {
+                'attr': {
+                    'class': 'form__label required'
+                }
+            }) }}
+
+            {{ form_errors(registerForm.username, {
+                'attr': {
+                    'class': 'form__error'
+                }
+            }) }}
+
+            {{ form_widget(registerForm.username, {
+                'attr': {
+                    'class': 'form__widget',
+                    'placeholder': 'Naigito'
+                }
+            }) }}
+        </div>
+        {# Username field #}
+
+        {# Password field #}
+        <div class="form--row
+                {% if not registerForm.password.vars.valid %}has-error{% endif %}
+            ">
+            {{ form_label(registerForm.password, null, {
+                'attr': {
+                    'class': 'form__label required'
+                }
+            }) }}
+
+            {{ form_errors(registerForm.password, {
+                'attr': {
+                    'class': 'form__error'
+                }
+            }) }}
+
+            {{ form_widget(registerForm.password, {
+                'attr': {
+                    'class': 'form__widget',
+                    'placeholder': '***********'
+                }
+            }) }}
+        </div>
+        {# Password field #}
+
+        {# TermsAgree field #}
+        <div class="form--row
+                {% if not registerForm.termsAgree.vars.valid %}has-error{% endif %}
+            ">
+            {{ form_widget(registerForm.termsAgree, {
+                'attr': {
+                    'class': 'form__widget'
+                }
+            }) }}
+
+            <label for="{{ registerForm.termsAgree.vars.id }}" class="form__label required">
+                {{ registerForm.termsAgree.vars.label|raw }}
+            </label>
+
+            {{ form_errors(registerForm.termsAgree, {
+                'attr': {
+                    'class': 'form__error'
+                }
+            }) }}
+        </div>
+        {# TermsAgree field #}
+
+        <input type="submit" value="Create account">
 
         {{ form_end(registerForm) }}
     </div>
