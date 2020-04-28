@@ -30,7 +30,7 @@
             {{ form_widget(registerForm.firstname, {
                 'attr': {
                     'class': 'form__widget',
-                    'placeholder': 'Michael'
+                    'placeholder': 'Firstname'
                 }
             }) }}
         </div>
@@ -55,7 +55,7 @@
             {{ form_widget(registerForm.lastname, {
                 'attr': {
                     'class': 'form__widget',
-                    'placeholder': 'Coutin'
+                    'placeholder': 'Lastname'
                 }
             }) }}
         </div>
@@ -88,21 +88,21 @@
 
         {# Password field #}
         <div class="form--row
-                {% if not registerForm.password.vars.valid %}has-error{% endif %}
+                {% if not registerForm.plainPassword.vars.valid %}has-error{% endif %}
             ">
-            {{ form_label(registerForm.password, null, {
+            {{ form_label(registerForm.plainPassword, null, {
                 'attr': {
                     'class': 'form__label required'
                 }
             }) }}
 
-            {{ form_errors(registerForm.password, {
+            {{ form_errors(registerForm.plainPassword, {
                 'attr': {
                     'class': 'form__error'
                 }
             }) }}
 
-            {{ form_widget(registerForm.password, {
+            {{ form_widget(registerForm.plainPassword, {
                 'attr': {
                     'class': 'form__widget',
                     'placeholder': '***********'

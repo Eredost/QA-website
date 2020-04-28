@@ -35,7 +35,8 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/register",
-     *     name="app_register")
+     *     name="app_register",
+     *     methods={"GET", "POST"})
      *
      * @param Request $request
      *
@@ -53,8 +54,16 @@ class SecurityController extends AbstractController
 
         if ($registerForm->isSubmitted() && $registerForm->isValid())
         {
-            // TODO: implement register form submit
-            die;
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($newUser);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Your account has been successfully created!'
+            );
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('frontend/security/register.html.twig', [
