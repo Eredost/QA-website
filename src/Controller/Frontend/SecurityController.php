@@ -53,6 +53,7 @@ class SecurityController extends AbstractController
 
         if ($registerForm->isSubmitted() && $registerForm->isValid())
         {
+            // TODO: implement register form submit
             die;
         }
 

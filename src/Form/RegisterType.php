@@ -7,7 +7,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -36,14 +35,16 @@ class RegisterType extends AbstractType
             ->add('lastname', TextType::class, [
                 'required' => false,
             ])
-            ->add('username', TextType::class)
-            ->add('password', PasswordType::class)
-            ->add('github', UrlType::class, [
-                'required' => false,
+            ->add('username', TextType::class, [
+                'empty_data' => '',
+            ])
+            ->add('password', PasswordType::class, [
+                'empty_data' => '',
             ])
             ->add('termsAgree', CheckboxType::class, [
+                'invalid_message' => 'You must accept the conditions to create an account',
                 'mapped' => false,
-                'label'  => 'I agree to the AnsFrame <a href="' . $this->router->generate('legalMentions') . '"Terms of Service</a> and <a href="' . $this->router->generate('legalMentions') . '">Privacy Policy</a>',
+                'label'  => 'I agree to the AnsFrame <a href="' . $this->router->generate('legalMentions') . '">Terms of Service</a> and <a href="' . $this->router->generate('legalMentions') . '">Privacy Policy</a>',
             ])
         ;
     }
