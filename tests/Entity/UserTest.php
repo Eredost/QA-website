@@ -16,7 +16,7 @@ class UserTest extends KernelTestCase
     {
         return (new User())
             ->setUsername('username')
-            ->setPassword('password')
+            ->setPassword('$argon2id$v=19$m=65536,t=4,p=1$XL3p6V6uztMHtBpD0GPaeA$2nlIu6Gno/tREQ0aXrjmzE488+582YJdBQ/7okz7PqQ')
             ->setFirstname('Michaël')
             ->setLastname('Lastname')
             ->setGithub('https://github.com/Eredost')
@@ -52,7 +52,7 @@ class UserTest extends KernelTestCase
     public function testInvalidLengthPassword()
     {
         $this->assertHasErrors($this->getEntity()->setPassword('abc'), 1);
-        $this->assertHasErrors($this->getEntity()->setPassword('123456789abcdefghij'), 1);
+        $this->assertHasErrors($this->getEntity()->setPassword('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae consequuntur deserunt dolore doloribus eligendi illo incidunt inventore ipsum laboriosam maxime nam natus necessitatibus perferendis saepe sint sit suscipit, temporibus, voluptatibus? Lorem ipsum'), 1);
     }
 
     public function testValidBlankFirstName()
