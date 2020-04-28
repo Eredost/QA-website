@@ -8,8 +8,11 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\Constraints\IsTrue;
 
 class RegisterType extends AbstractType
 {
@@ -41,12 +44,28 @@ class RegisterType extends AbstractType
             ->add('password', PasswordType::class, [
                 'empty_data' => '',
             ])
-            ->add('termsAgree', CheckboxType::class, [
-                'invalid_message' => 'You must accept the conditions to create an account',
+            ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'label'  => 'I agree to the AnsFrame <a href="' . $this->router->generate('legalMentions') . '">Terms of Service</a> and <a href="' . $this->router->generate('legalMentions') . '">Privacy Policy</a>',
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'You must accept the conditions to create an account',
+                    ])
+                ],
             ])
+            ->addEventListener(FormEvents::SUBMIT, [$this, 'onSubmit'])
         ;
+    }
+
+    public function onSubmit(FormEvent $event)
+    {
+        /** @var User $user */
+        $user = $event->getData();
+        $data = $event->getForm()->get('agreeTerms')->getViewData();
+
+        if (null !== $data) {
+            $user->setAgreeTerms(new \DateTime());
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

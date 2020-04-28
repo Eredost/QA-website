@@ -104,6 +104,11 @@ class User implements UserInterface
      */
     private $questions;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $agreeTerms;
+
     public function __construct()
     {
         $this->answers   = new ArrayCollection();
@@ -291,6 +296,18 @@ class User implements UserInterface
                 $question->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAgreeTerms(): ?\DateTimeInterface
+    {
+        return $this->agreeTerms;
+    }
+
+    public function setAgreeTerms(\DateTimeInterface $agreeTerms): self
+    {
+        $this->agreeTerms = $agreeTerms;
 
         return $this;
     }
