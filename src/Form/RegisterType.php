@@ -60,6 +60,7 @@ class RegisterType extends AbstractType
             ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped'      => false,
+                'label'       => 'Password',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'The password could not be blank',

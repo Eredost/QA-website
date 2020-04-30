@@ -6,33 +6,25 @@
 
 {% block body %}
 
-    <h2 class="title title--big">Create a new account</h2>
-
     <div class="form">
+
+        <h2 class="title title--big">Create a new account</h2>
         {{ form_start(registerForm) }}
 
         {# Firstname field #}
         <div class="form--row row--half
             {% if not registerForm.firstname.vars.valid %}has-error{% endif %}
         ">
-            {{ form_label(registerForm.firstname, null, {
-                'attr': {
-                    'class': 'form__label'
-                }
-            }) }}
-
-            {{ form_errors(registerForm.firstname, {
-                'attr': {
-                    'class': 'form__error'
-                }
-            }) }}
+            {{ form_label(registerForm.firstname) }}
 
             {{ form_widget(registerForm.firstname, {
                 'attr': {
                     'class': 'form__widget',
-                    'placeholder': 'Firstname'
+                    'placeholder': 'John'
                 }
             }) }}
+
+            {{ form_errors(registerForm.firstname) }}
         </div>
         {# Firstname field #}
 
@@ -40,24 +32,16 @@
         <div class="form--row row--half
                 {% if not registerForm.lastname.vars.valid %}has-error{% endif %}
             ">
-            {{ form_label(registerForm.lastname, null, {
-                'attr': {
-                    'class': 'form__label'
-                }
-            }) }}
-
-            {{ form_errors(registerForm.lastname, {
-                'attr': {
-                    'class': 'form__error'
-                }
-            }) }}
+            {{ form_label(registerForm.lastname) }}
 
             {{ form_widget(registerForm.lastname, {
                 'attr': {
                     'class': 'form__widget',
-                    'placeholder': 'Lastname'
+                    'placeholder': 'Doe'
                 }
             }) }}
+
+            {{ form_errors(registerForm.lastname) }}
         </div>
         {# Lastname field #}
 
@@ -65,24 +49,16 @@
         <div class="form--row
                 {% if not registerForm.username.vars.valid %}has-error{% endif %}
             ">
-            {{ form_label(registerForm.username, null, {
-                'attr': {
-                    'class': 'form__label required'
-                }
-            }) }}
-
-            {{ form_errors(registerForm.username, {
-                'attr': {
-                    'class': 'form__error'
-                }
-            }) }}
+            {{ form_label(registerForm.username) }}
 
             {{ form_widget(registerForm.username, {
                 'attr': {
                     'class': 'form__widget',
-                    'placeholder': 'Naigito'
+                    'placeholder': 'Anonymous'
                 }
             }) }}
+
+            {{ form_errors(registerForm.username) }}
         </div>
         {# Username field #}
 
@@ -90,17 +66,7 @@
         <div class="form--row
                 {% if not registerForm.plainPassword.vars.valid %}has-error{% endif %}
             ">
-            {{ form_label(registerForm.plainPassword, null, {
-                'attr': {
-                    'class': 'form__label required'
-                }
-            }) }}
-
-            {{ form_errors(registerForm.plainPassword, {
-                'attr': {
-                    'class': 'form__error'
-                }
-            }) }}
+            {{ form_label(registerForm.plainPassword) }}
 
             {{ form_widget(registerForm.plainPassword, {
                 'attr': {
@@ -108,6 +74,8 @@
                     'placeholder': '***********'
                 }
             }) }}
+
+            {{ form_errors(registerForm.plainPassword) }}
         </div>
         {# Password field #}
 
@@ -133,7 +101,11 @@
         </div>
         {# TermsAgree field #}
 
-        <input type="submit" value="Create account">
+        {# Submit button #}
+        <div class="form--row">
+            <input type="submit" value="Create account" class="form__submit">
+        </div>
+        {# Submit button #}
 
         {{ form_end(registerForm) }}
     </div>
