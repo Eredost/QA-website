@@ -1,5 +1,6 @@
 .wrapper {
   margin: 2em auto;
+  min-width: 700px;
   max-width: 1300px;
   display: flex;
   background: rgb(171,71,188);
@@ -8,9 +9,6 @@
 
   &__content {
     padding: 1.5em 1em;
-
-    // FIXME
-    min-height: 1200px;
   }
 
   &__sidebar {
