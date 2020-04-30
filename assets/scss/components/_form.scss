@@ -26,6 +26,11 @@
         text-decoration: underline;
       }
     }
+
+    &.required::after {
+      content: " *";
+      color: #CC0000;
+    }
   }
 
   li {
@@ -38,6 +43,7 @@
   &--row {
     width: 100%;
     margin: 0.5em 0;
+    position: relative;
 
     input[type="text"],
     input[type="password"] {
@@ -47,6 +53,54 @@
       border-radius: 5px;
       border: 2px solid $color-brand;
       background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .form__checkbox {
+      margin-left: 35px;
+      cursor: pointer;
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        border-radius: 2px;
+        background-color: #eee;
+      }
+
+      input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      &:hover input[type="checkbox"] ~ .checkmark {
+        background-color: #ccc;
+      }
+
+      & input[type="checkbox"]:checked ~ .checkmark {
+        background-color: $color-brand;
+      }
+
+      .checkmark::after {
+        content: "";
+        position: absolute;
+        display: none;
+        left: 7px;
+        top: 2px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+      }
+
+      & input[type="checkbox"]:checked ~ .checkmark::after {
+        display: block;
+      }
     }
 
     .form__submit {
