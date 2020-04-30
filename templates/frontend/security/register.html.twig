@@ -83,14 +83,16 @@
         <div class="form--row
                 {% if not registerForm.agreeTerms.vars.valid %}has-error{% endif %}
             ">
-            {{ form_widget(registerForm.agreeTerms, {
-                'attr': {
-                    'class': 'form__widget'
-                }
-            }) }}
 
-            <label for="{{ registerForm.agreeTerms.vars.id }}" class="form__label required">
+            <label for="{{ registerForm.agreeTerms.vars.id }}" class="form__label required form__checkbox">
                 {{ registerForm.agreeTerms.vars.label|raw }}
+
+                {{ form_widget(registerForm.agreeTerms, {
+                    'attr': {
+                        'class': 'form__widget'
+                    }
+                }) }}
+                <span class="checkmark"></span>
             </label>
 
             {{ form_errors(registerForm.agreeTerms, {
