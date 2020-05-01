@@ -4,9 +4,12 @@ namespace App\Controller\Frontend;
 
 use App\Form\ContactType;
 use App\Repository\QuestionRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MainController extends AbstractController
@@ -66,14 +69,33 @@ class MainController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function contactUs(Request $request)
+    public function contactUs(Request $request, MailerInterface $mailer)
     {
         $contactForm = $this->createForm(ContactType::class);
         $contactForm->handleRequest($request);
 
         if ($contactForm->isSubmitted() && $contactForm->isValid()) {
-            // TODO: implement form submit
-            die;
+
+
+            if( 'smtp://your_mailer_dsn' != $this->getParameter('mailer_dsn')) {
+                $data = $contactForm->getData();
+
+                $email = (new TemplatedEmail())
+                    ->from('hello@ansframe.io')
+                    ->to($data['email'])
+                    ->subject('Thanks for your feedback')
+                    ->htmlTemplate('emails/contact.html.twig')
+                ;
+
+                $mailer->send($email);
+            }
+
+            $this->addFlash(
+                'success',
+                'Your message has been sent successfully. We will get back to you as soon as possible.'
+            );
+
+            return $this->redirectToRoute('contactUs');
         }
 
         return $this->render('frontend/main/contactUs.html.twig', [
