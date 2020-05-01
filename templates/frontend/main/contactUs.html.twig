@@ -5,7 +5,66 @@
 {% block title %}Contact Us{% endblock %}
 
 {% block body %}
-    <h2 class="title title--big">
-        Contact Us
-    </h2>
+
+    <div class="form">
+        <h2 class="title title--big">Leave us a message</h2>
+
+        {{ form_start(contactForm) }}
+
+        <div class="form--row row--half
+            {% if not contactForm.firstname.vars.valid %}has-error{% endif %}
+        ">
+
+            {{ form_label(contactForm.firstname) }}
+
+            {{ form_widget(contactForm.firstname) }}
+
+            {{ form_errors(contactForm.firstname) }}
+
+        </div>
+
+        <div class="form--row row--half
+            {% if not contactForm.lastname.vars.valid %}has-error{% endif %}
+        ">
+
+            {{ form_label(contactForm.lastname) }}
+
+            {{ form_widget(contactForm.lastname) }}
+
+            {{ form_errors(contactForm.lastname) }}
+
+        </div>
+
+        <div class="form--row
+            {% if not contactForm.email.vars.valid %}has-error{% endif %}
+        ">
+
+            {{ form_label(contactForm.email) }}
+
+            {{ form_widget(contactForm.email) }}
+
+            {{ form_errors(contactForm.email) }}
+
+        </div>
+
+        <div class="form--row
+            {% if not contactForm.message.vars.valid %}has-error{% endif %}
+        ">
+
+            {{ form_label(contactForm.message) }}
+
+            {{ form_widget(contactForm.message) }}
+
+            {{ form_errors(contactForm.message) }}
+
+        </div>
+
+        <div class="form--row">
+
+            <input type="submit" value="Submit" class="form__submit">
+
+        </div>
+
+        {{ form_start(contactForm) }}
+    </div>
 {% endblock %}
