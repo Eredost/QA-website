@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontend;
 
+use App\Form\ContactType;
 use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -65,8 +66,18 @@ class MainController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function contactUs()
+    public function contactUs(Request $request)
     {
-        return $this->render('frontend/main/contactUs.html.twig');
+        $contactForm = $this->createForm(ContactType::class);
+        $contactForm->handleRequest($request);
+
+        if ($contactForm->isSubmitted() && $contactForm->isValid()) {
+            // TODO: implement form submit
+            die;
+        }
+
+        return $this->render('frontend/main/contactUs.html.twig', [
+            'contactForm' => $contactForm->createView(),
+        ]);
     }
 }
