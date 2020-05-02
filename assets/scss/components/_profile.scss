@@ -22,10 +22,40 @@
 
   &__registered {
     border-radius: 50%;
+    position: relative;
 
     .profile__picture {
       width: 50px;
       cursor: pointer;
+    }
+
+    .profile__menu {
+      background-color: #FFFFFF;
+      border: 2px solid $color-brand-alt;
+      border-radius: 5px;
+      width: 150px;
+      position: absolute;
+      top: 50px;
+      left: -100px;
+      z-index: 10;
+
+      &--link {
+        display: block;
+        padding: 0.3em 1em;
+        margin: 0.4em 0;
+        color: $color-brand-alt;
+        font-size: 0.9em;
+        font-weight: 500;
+
+        &:hover {
+          color: #FFFFFF;
+          background-color: $color-brand-alt;
+        }
+      }
+
+      &.hidden {
+        display: none;
+      }
     }
   }
 }

@@ -28,9 +28,20 @@
 
             <div class="profile__registered">
 
-            <span>
-                <img class="profile__picture" src="{{ asset('build/profile.png') }}" alt="profile picture">
-            </span>
+                <span>
+                    <img class="profile__picture" src="{{ asset('build/profile.png') }}" alt="profile picture">
+                </span>
+
+                <div class="profile__menu hidden">
+                    <ul>
+                        <li class="profile__menu--item">
+                            <a href="#" class="profile__menu--link">My account</a>
+                        </li>
+                        <li class="profile__menu--item">
+                            <a href="{{ path('app_logout') }}" class="profile__menu--link">Log out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
 
         {% else %}
