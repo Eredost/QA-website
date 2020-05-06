@@ -12,19 +12,17 @@
             {% include('layouts/_header.html.twig') %}
         {% endblock %}
 
-        <div class="wrapper">
+        <div class="wrapper
+            {% if wrapperClasses is defined %}{{ wrapperClasses }}{% endif %}
+        ">
 
             <div class="wrapper__content
-                {% if contentFullWidth is not defined %}
-                    wrapper--three-quarters
-                {% else %}
-                    wrapper--full
-                {% endif %}
+                {% if contentFullWidth is not defined %} wrapper--three-quarters {% elseif contentFullWidth is same as(true) %} wrapper--full {% endif %}
             ">
                 {% block body %}{% endblock %}
             </div>
 
-            {% if contentFullWidth is not defined %}
+            {% if contentFullWidth is not defined or not contentFullWidth is same as(true) %}
                 <div class="wrapper__sidebar wrapper--quarter">
                     {% block sidebar %}
                         {% include('layouts/_sidebar.html.twig') %}
