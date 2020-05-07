@@ -18,13 +18,51 @@
     </div>
     {# Card Head #}
 
-    {#Card Excerpt #}
+    {# Card Excerpt #}
     <div class="question-card__excerpt">
         <p class="excerpt__content">
             {{ question.content|truncate(300, '...')|nl2br }}
         </p>
     </div>
-    {#Card Excerpt #}
+    {# Card Excerpt #}
+
+    {# Admin section #}
+    {% if is_granted('QA_EDIT', question) %}
+
+        <div class="admin">
+
+            <a href="#" class="admin__link admin__link--edit">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                Edit
+            </a>
+
+            {% if is_granted('QA_OWNER', question) %}
+
+                <a href="#" class="admin__link admin__link--delete">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                    Delete
+                </a>
+
+            {% else %}
+
+                {% if question.isEnable %}
+                    <a href="#" class="admin__link admin__link--disable">
+                        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                        Disable
+                    </a>
+
+                {% else %}
+
+                    <a href="#" class="admin__link admin__link--enable">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        Enable
+                    </a>
+
+                {% endif %}
+            {% endif %}
+        </div>
+    {% endif %}
+    {# Admin section #}
 
 </div>
 {# Question Card #}

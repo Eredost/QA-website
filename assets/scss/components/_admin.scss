@@ -1,0 +1,28 @@
+.admin {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 2px solid $color-text-alt-darkened;
+  margin-top: 0.5em;
+  padding: 0.5em;
+
+  * + * {
+    margin-left: 1em;
+  }
+
+  &__link {
+    font-size: 0.8em;
+  }
+
+  &__link--edit {
+    color: #FF8800;
+  }
+
+  &__link--delete,
+  &__link--disable {
+    color: #CC0000;
+  }
+
+  &__link--enable {
+    color: #007E33;
+  }
+}
