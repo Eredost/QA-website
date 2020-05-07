@@ -5,7 +5,9 @@
 
         <div class="head__tags">
             {% for tag in question.tags %}
-                {% include('frontend/layouts/_tag.html.twig') with { 'tag': tag } only %}
+                {% include('frontend/layouts/_tag.html.twig') with {
+                    'tag': tag
+                } only %}
             {% endfor %}
         </div>
 
@@ -33,5 +35,11 @@
             </a>
         </p>
     </div>
+
+    {# Admin section #}
+    {% include('backend/layouts/_question-admin.html.twig') with {
+        'question': question
+    } only %}
+    {# Admin section #}
 
 </div>
