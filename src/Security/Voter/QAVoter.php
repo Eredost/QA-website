@@ -20,7 +20,7 @@ class QAVoter extends Voter
 
     protected function supports($attribute, $subject)
     {
-        return in_array($attribute, ['QA_EDIT']);
+        return in_array($attribute, ['QA_EDIT', 'QA_OWNER']);
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -35,6 +35,9 @@ class QAVoter extends Voter
             case 'QA_EDIT':
                 return $this->canView($subject, $user);
                 break;
+            case 'QA_OWNER':
+                return $this->isOwner($subject, $user);
+                break;
         }
 
         return false;
@@ -42,7 +45,12 @@ class QAVoter extends Voter
 
     private function canView($qa, User $user)
     {
-        return $user === $qa->getUser()
+        return $this->isOwner($qa, $user)
             || $this->security->isGranted('ROLE_MODERATOR');
+    }
+
+    private function isOwner($qa, User $user)
+    {
+        return $user === $qa->getUser();
     }
 }
