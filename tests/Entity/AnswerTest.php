@@ -47,14 +47,4 @@ class AnswerTest extends KernelTestCase
     {
         $this->assertHasErrors($this->getEntity()->setIsEnable(false), 0);
     }
-
-    public function testInvalidBlankUser()
-    {
-        $this->assertHasErrors($this->getEntity()->setUser(null), 1);
-    }
-
-    public function testInvalidBlankQuestion()
-    {
-        $this->assertHasErrors($this->getEntity()->setQuestion(null), 1);
-    }
 }
