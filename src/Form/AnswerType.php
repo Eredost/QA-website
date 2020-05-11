@@ -7,9 +7,18 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 
 class AnswerType extends AbstractType
 {
+    /** @var Security $security */
+    private $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -27,7 +36,8 @@ class AnswerType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Answer::class,
-            'attr' => [
+            'disabled'   => !$this->security->isGranted('IS_AUTHENTICATED_FULLY'),
+            'attr'       => [
                 'novalidate' => true,
                 'class' => 'answer-form clear',
             ],

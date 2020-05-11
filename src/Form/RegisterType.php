@@ -26,23 +26,9 @@ class RegisterType extends AbstractType
     /** @var PasswordEncoderInterface $encoder */
     private $encoder;
 
-    /**
-     * @param UrlGeneratorInterface $router
-     *
-     * @required
-     */
-    public function setRouter(UrlGeneratorInterface $router)
+    public function __construct(UrlGeneratorInterface $router, UserPasswordEncoderInterface $encoder)
     {
         $this->router = $router;
-    }
-
-    /**
-     * @param UserPasswordEncoderInterface $encoder
-     *
-     * @required
-     */
-    public function setEncoder(UserPasswordEncoderInterface $encoder)
-    {
         $this->encoder = $encoder;
     }
 
