@@ -1,6 +1,7 @@
 .answer-form {
   @extend .question-card;
   border-top: 5px solid #ffbb33;
+  position: relative;
 
   &__message {
     width: 100%;
@@ -42,5 +43,18 @@
     .answer-form__message {
       border: 2px solid #ff4444;
     }
+  }
+
+  &__disabled {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

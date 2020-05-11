@@ -51,18 +51,12 @@ class Answer
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank(
-     *     message = "The answer must belong to a user"
-     * )
      */
     private $user;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Question", inversedBy="answers")
      * @ORM\JoinColumn(nullable=false)
-     * @Assert\NotBlank(
-     *     message = "The answer must belong to a question"
-     * )
      */
     private $question;
 

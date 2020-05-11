@@ -34,7 +34,7 @@ class QuestionController extends AbstractController
      * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function show(UserRepository $userRepository, QuestionRepository $questionRepository, Request $request, int $questionId)
+    public function show(QuestionRepository $questionRepository, Request $request, int $questionId)
     {
         $currentPage = $request->query->get('page', 1);
         $question = $questionRepository->findQuestionById($questionId);
@@ -54,15 +54,15 @@ class QuestionController extends AbstractController
             throw new NotFoundHttpException('The page you are looking for, didn\'t exist');
         }
 
-        // FIXME: delete $user after implementing connection feature
         $newAnswer = new Answer();
-        $user = $userRepository->findAll();
-        $newAnswer->setUser($user[0]);
-        $newAnswer->setQuestion($question);
         $answerForm = $this->createForm(AnswerType::class, $newAnswer);
         $answerForm->handleRequest($request);
 
-        if ($answerForm->isSubmitted() && $answerForm->isValid()) {
+        if ($answerForm->isSubmitted() && $answerForm->isValid() && $this->isGranted('IS_AUTHENTICATED_FULLY')) {
+
+            $newAnswer->setUser($this->getUser())
+                ->setQuestion($question)
+            ;
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($newAnswer);

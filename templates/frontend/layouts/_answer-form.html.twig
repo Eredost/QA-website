@@ -1,5 +1,11 @@
 {{ form_start(answerForm) }}
 
+    {% if answerForm.vars.disabled %}
+        <div class="answer-form__disabled">
+            You must be logged in to post an answer
+        </div>
+    {% endif %}
+
     <h4 class="title title--small black">Submit an answer</h4>
 
     <div class="
