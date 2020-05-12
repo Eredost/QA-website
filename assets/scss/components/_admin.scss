@@ -1,6 +1,7 @@
 .admin {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   border-top: 2px solid $color-text-alt-darkened;
   margin-top: 0.5em;
   padding: 0.5em;
@@ -24,5 +25,13 @@
 
   &__link--enable {
     color: #007E33;
+  }
+
+  &__link--delete {
+    border: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
   }
 }
