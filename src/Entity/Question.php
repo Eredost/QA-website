@@ -212,4 +212,14 @@ class Question
 
         return $this;
     }
+
+    /**
+     * Allows you to modify the visibility of the question by toggling the "enable" property
+     *
+     * @return void
+     */
+    public function toggle()
+    {
+        $this->setIsEnable(!$this->getIsEnable());
+    }
 }

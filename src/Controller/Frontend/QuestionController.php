@@ -12,12 +12,12 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/question",
- *     name="question_")
- *
  * Class QuestionController
  *
  * @package App\Controller
+ *
+ * @Route("/question",
+ *     name="question_")
  */
 class QuestionController extends AbstractController
 {
