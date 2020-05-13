@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -52,13 +53,18 @@ class QuestionController extends AbstractController
      *
      * @param Question               $question
      * @param EntityManagerInterface $manager
+     * @param Request                $request
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function delete(Question $question, EntityManagerInterface $manager)
+    public function delete(Question $question, EntityManagerInterface $manager, Request $request)
     {
-        $manager->remove($question);
-        $manager->flush();
+        $token = $request->request->get('token');
+
+        if ($this->isCsrfTokenValid('question-delete', $token)) {
+            $manager->remove($question);
+            $manager->flush();
+        }
 
         return $this->redirectToRoute('home');
     }
