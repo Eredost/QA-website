@@ -131,4 +131,14 @@ class Answer
 
         return $this;
     }
+
+    /**
+     * Allows you to modify the visibility of the answer by toggling the "enable" property
+     *
+     * @return void
+     */
+    public function toggle()
+    {
+        $this->setIsEnable(!$this->getIsEnable());
+    }
 }
