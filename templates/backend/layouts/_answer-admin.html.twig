@@ -1,0 +1,38 @@
+<div class="admin">
+
+    <a href="#" class="admin__link admin__link--edit">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+        Edit
+    </a>
+
+    {% if is_granted('ROLE_MODERATOR', answer) %}
+
+        {% if answer.isEnable %}
+            <a href="{{ path('admin_answer_toggle', {'answerId': answer.id}) }}" class="admin__link admin__link--disable">
+                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                Disable
+            </a>
+
+        {% else %}
+
+            <a href="{{ path('admin_answer_toggle', {'answerId': answer.id}) }}" class="admin__link admin__link--enable">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                Enable
+            </a>
+
+        {% endif %}
+    {% endif %}
+
+    <form action="{{ path('admin_answer_delete', {'answerId': answer.id}) }}" method="post">
+
+        <input type="hidden" name="_method" value="DELETE">
+
+        <input type="hidden" name="token" value="{{ csrf_token('answer-delete') }}">
+
+        <button type="submit" class="admin__link admin__link--delete">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+            Delete
+        </button>
+    </form>
+
+</div>

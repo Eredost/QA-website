@@ -20,4 +20,12 @@
         </p>
     </div>
     {# Card Footer #}
+
+    {# Card admin #}
+    {% if is_granted('QA_EDIT', answer) %}
+        {% include 'backend/layouts/_answer-admin.html.twig' with {
+            'answer': answer
+        } only %}
+    {% endif %}
+    {# Card admin #}
 </div>
