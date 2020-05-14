@@ -8,10 +8,24 @@
         {% endblock %}
     </head>
     <body>
+        {# Header section #}
         {% block header %}
             {% include('layouts/_header.html.twig') %}
         {% endblock %}
+        {# Header section #}
 
+        {# Flash messages #}
+        {% for label, messages in app.flashes(['success', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert--{{ label }}">
+                    <i class="fa fa-times alert--closer" aria-hidden="true"></i>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {# Flash messages #}
+
+        {# Main section #}
         <div class="wrapper
             {% if wrapperClasses is defined %}{{ wrapperClasses }}{% endif %}
         ">
@@ -30,10 +44,13 @@
                 </div>
             {% endif %}
         </div>
+        {# Main section #}
 
+        {# Footer section #}
         {% block footer %}
             {% include('layouts/_footer.html.twig') %}
         {% endblock %}
+        {# Footer section #}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
