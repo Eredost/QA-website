@@ -68,6 +68,11 @@ class QuestionController extends AbstractController
             $entityManager->persist($newAnswer);
             $entityManager->flush();
 
+            $this->addFlash(
+                'success',
+                'Your answer has been successfully added'
+            );
+
             return $this->redirectToRoute('question_show', [
                 'questionId' => $question->getId(),
             ]);

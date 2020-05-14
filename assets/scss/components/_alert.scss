@@ -1,5 +1,6 @@
 .alert {
   position: relative;
+  min-width: 450px;
   max-width: 900px;
   margin: 1.5em auto 0;
   color: #FFFFFF;
@@ -7,6 +8,7 @@
   padding: 1.8em 0.8em 1.2em;
   border-radius: 5px;
   font-size: 0.85em;
+  text-align: center;
 
   &--closer {
     position: absolute;
