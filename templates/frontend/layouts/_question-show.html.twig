@@ -37,9 +37,11 @@
     </div>
 
     {# Admin section #}
-    {% include('backend/layouts/_question-admin.html.twig') with {
-        'question': question
-    } only %}
+    {% if is_granted('QA_EDIT', question) %}
+        {% include('backend/layouts/_question-admin.html.twig') with {
+            'question': question
+        } only %}
+    {% endif %}
     {# Admin section #}
 
 </div>
