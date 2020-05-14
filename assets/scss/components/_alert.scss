@@ -1,0 +1,25 @@
+.alert {
+  position: relative;
+  max-width: 900px;
+  margin: 1.5em auto 0;
+  color: #FFFFFF;
+  min-height: 35px;
+  padding: 1.8em 0.8em 1.2em;
+  border-radius: 5px;
+  font-size: 0.85em;
+
+  &--closer {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.1em;
+  }
+
+  &--success {
+    background: #00C851;
+  }
+
+  &--warning {
+    background: #ff4444;
+  }
+}
