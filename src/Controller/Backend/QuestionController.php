@@ -38,6 +38,11 @@ class QuestionController extends AbstractController
         $question->toggle();
         $manager->flush();
 
+        $this->addFlash(
+            'success',
+            'The question has been successfully ' . ($question->getIsEnable() ? 'enabled': 'disabled')
+        );
+
         return $this->redirectToRoute('question_show', [
             'questionId' => $question->getId(),
         ]);
@@ -64,6 +69,11 @@ class QuestionController extends AbstractController
         if ($this->isCsrfTokenValid('question-delete', $token)) {
             $manager->remove($question);
             $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'The question has been successfully deleted'
+            );
         }
 
         return $this->redirectToRoute('home');

@@ -66,7 +66,11 @@ class MainController extends AbstractController
      *     name="contactUs",
      *     methods={"GET", "POST"})
      *
+     * @param Request         $request
+     * @param MailerInterface $mailer
+     *
      * @return \Symfony\Component\HttpFoundation\Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     public function contactUs(Request $request, MailerInterface $mailer)
     {
@@ -85,14 +89,20 @@ class MainController extends AbstractController
                     ->subject('Thanks for your feedback')
                     ->htmlTemplate('emails/contact.html.twig')
                 ;
-
                 $mailer->send($email);
+
+                $this->addFlash(
+                    'success',
+                    'Your message has been sent successfully. We will get back to you as soon as possible.'
+                );
+            }
+            else {
+                $this->addFlash(
+                    'warning',
+                    'An error has occurred, please try again later'
+                );
             }
 
-            $this->addFlash(
-                'success',
-                'Your message has been sent successfully. We will get back to you as soon as possible.'
-            );
 
             return $this->redirectToRoute('contactUs');
         }

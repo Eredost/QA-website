@@ -15,6 +15,10 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login",
      *     name="app_login")
+     *
+     * @param AuthenticationUtils $authenticationUtils
+     *
+     * @return Response
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
@@ -60,7 +64,7 @@ class SecurityController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Your account has been successfully created!'
+                'Your account has been successfully created'
             );
 
             return $this->redirectToRoute('app_login');
