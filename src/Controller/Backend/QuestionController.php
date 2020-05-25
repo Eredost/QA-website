@@ -78,4 +78,15 @@ class QuestionController extends AbstractController
 
         return $this->redirectToRoute('home');
     }
+
+    /**
+     * @Route("/new",
+     *     name="new",
+     *     methods={"GET", "POST"})
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function new()
+    {
+        return $this->render('backend/admin/question/new.html.twig');
+    }
 }
