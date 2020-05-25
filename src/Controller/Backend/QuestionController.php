@@ -3,6 +3,7 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Question;
+use App\Form\QuestionType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -85,8 +86,19 @@ class QuestionController extends AbstractController
      *     methods={"GET", "POST"})
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function new()
+    public function new(Request $request)
     {
-        return $this->render('backend/admin/question/new.html.twig');
+        $newQuestion = new Question();
+        $newQuestionForm = $this->createForm(QuestionType::class, $newQuestion);
+        $newQuestionForm->handleRequest($request);
+
+        if ($newQuestionForm->isSubmitted() && $newQuestionForm->isValid()) {
+
+            // TODO: handle form submit
+        }
+
+        return $this->render('backend/admin/question/new.html.twig', [
+            'newQuestionForm' => $newQuestionForm->createView(),
+        ]);
     }
 }

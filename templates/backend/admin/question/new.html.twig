@@ -7,4 +7,43 @@
 
 {% block body %}
 
+    {{ form_start(newQuestionForm) }}
+
+        <h2 class="title title--big">Ask a new question</h2>
+
+        {# Title field #}
+        <div class="form--row
+            {% if not newQuestionForm.title.vars.valid %}has-error{% endif %}
+        ">
+
+            {{ form_label(newQuestionForm.title) }}
+
+            {{ form_widget(newQuestionForm.title) }}
+
+            {{ form_errors(newQuestionForm.title) }}
+
+        </div>
+        {# Title field #}
+
+        {# Content field #}
+        <div class="form--row
+            {% if not newQuestionForm.content.vars.valid %}has-error{% endif %}
+        ">
+
+            {{ form_label(newQuestionForm.content) }}
+
+            {{ form_widget(newQuestionForm.content) }}
+
+            {{ form_errors(newQuestionForm.content) }}
+
+        </div>
+        {# Content field #}
+
+        <div class="form--row">
+
+            <input type="submit" value="Ask" class="form__submit">
+
+        </div>
+
+    {{ form_end(newQuestionForm) }}
 {% endblock %}
