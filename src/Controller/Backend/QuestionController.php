@@ -94,7 +94,18 @@ class QuestionController extends AbstractController
 
         if ($newQuestionForm->isSubmitted() && $newQuestionForm->isValid()) {
 
-            // TODO: handle form submit
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($newQuestion);
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Your question has been successfully asked'
+            );
+
+            return $this->redirectToRoute('question_show', [
+                'questionId' => $newQuestion->getId(),
+            ]);
         }
 
         return $this->render('backend/admin/question/new.html.twig', [
