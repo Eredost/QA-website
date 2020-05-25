@@ -39,6 +39,20 @@
         </div>
         {# Content field #}
 
+        {# Tags field #}
+        <div class="form--row
+            {% if not newQuestionForm.tags.vars.valid %}has-error{% endif %}
+        ">
+
+            {{ form_label(newQuestionForm.tags) }}
+
+            {{ form_widget(newQuestionForm.tags) }}
+
+            {{ form_errors(newQuestionForm.tags) }}
+
+        </div>
+        {# Tags field #}
+
         <div class="form--row">
 
             <input type="submit" value="Ask" class="form__submit">
