@@ -9,55 +9,55 @@
 
     {{ form_start(editQuestionForm) }}
 
-    <h2 class="title title--big">Edit question</h2>
+        <h2 class="title title--big">Edit question</h2>
 
-    {# Title field #}
-    <div class="form--row
-            {% if not editQuestionForm.title.vars.valid %}has-error{% endif %}
-        ">
+        {# Tags field #}
+        <div class="form--row
+                {% if not editQuestionForm.tags.vars.valid %}has-error{% endif %}
+            ">
 
-        {{ form_label(editQuestionForm.title) }}
+            {{ form_label(editQuestionForm.tags) }}
 
-        {{ form_widget(editQuestionForm.title) }}
+            {{ form_widget(editQuestionForm.tags) }}
 
-        {{ form_errors(editQuestionForm.title) }}
+            {{ form_errors(editQuestionForm.tags) }}
 
-    </div>
-    {# Title field #}
+        </div>
+        {# Tags field #}
 
-    {# Content field #}
-    <div class="form--row
-            {% if not editQuestionForm.content.vars.valid %}has-error{% endif %}
-        ">
+        {# Title field #}
+        <div class="form--row
+                {% if not editQuestionForm.title.vars.valid %}has-error{% endif %}
+            ">
 
-        {{ form_label(editQuestionForm.content) }}
+            {{ form_label(editQuestionForm.title) }}
 
-        {{ form_widget(editQuestionForm.content) }}
+            {{ form_widget(editQuestionForm.title) }}
 
-        {{ form_errors(editQuestionForm.content) }}
+            {{ form_errors(editQuestionForm.title) }}
 
-    </div>
-    {# Content field #}
+        </div>
+        {# Title field #}
 
-    {# Tags field #}
-    <div class="form--row
-            {% if not editQuestionForm.tags.vars.valid %}has-error{% endif %}
-        ">
+        {# Content field #}
+        <div class="form--row
+                {% if not editQuestionForm.content.vars.valid %}has-error{% endif %}
+            ">
 
-        {{ form_label(editQuestionForm.tags) }}
+            {{ form_label(editQuestionForm.content) }}
 
-        {{ form_widget(editQuestionForm.tags) }}
+            {{ form_widget(editQuestionForm.content) }}
 
-        {{ form_errors(editQuestionForm.tags) }}
+            {{ form_errors(editQuestionForm.content) }}
 
-    </div>
-    {# Tags field #}
+        </div>
+        {# Content field #}
 
-    <div class="form--row">
+        <div class="form--row">
 
-        <input type="submit" value="Edit" class="form__submit">
+            <input type="submit" value="Edit" class="form__submit">
 
-    </div>
+        </div>
 
     {{ form_end(editQuestionForm) }}
 {% endblock %}
