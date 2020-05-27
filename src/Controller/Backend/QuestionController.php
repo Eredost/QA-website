@@ -22,11 +22,49 @@ use Symfony\Component\Routing\Annotation\Route;
 class QuestionController extends AbstractController
 {
     /**
+     * @Route("/{questionId}/edit",
+     *     name="edit",
+     *     requirements={"questionId": "\d+"},
+     *     methods={"GET", "POST"})
+     * @ParamConverter("question", options={"id": "questionId"})
+     * @IsGranted("QA_EDIT", subject="question")
+     *
+     * @param Question $question
+     * @param Request  $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
+    public function edit(Question $question, Request $request)
+    {
+        $editQuestionForm = $this->createForm(QuestionType::class, $question);
+        $editQuestionForm->handleRequest($request);
+
+        if ($editQuestionForm->isSubmitted() && $editQuestionForm->isValid()) {
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->flush();
+
+            $this->addFlash(
+                'success',
+                'Your question has been successfully edited'
+            );
+
+            return $this->redirectToRoute('question_show', [
+                'questionId' => $question->getId(),
+            ]);
+        }
+
+        return $this->render('backend/admin/question/edit.html.twig', [
+            'editQuestionForm' => $editQuestionForm->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/{questionId}/toggle",
      *     name="toggle",
      *     requirements={"questionId": "\d+"},
      *     methods={"GET"})
-     * @ParamConverter("question", options={"id" = "questionId"})
+     * @ParamConverter("question", options={"id": "questionId"})
      * @IsGranted("ROLE_MODERATOR")
      *
      * @param Question               $question
@@ -85,10 +123,16 @@ class QuestionController extends AbstractController
      *     name="new",
      *     methods={"GET", "POST"})
      * @IsGranted("IS_AUTHENTICATED_FULLY")
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function new(Request $request)
     {
         $newQuestion = new Question();
+        $newQuestion->setUser($this->getUser());
+
         $newQuestionForm = $this->createForm(QuestionType::class, $newQuestion);
         $newQuestionForm->handleRequest($request);
 
