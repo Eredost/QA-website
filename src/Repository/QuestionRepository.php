@@ -46,10 +46,9 @@ class QuestionRepository extends ServiceEntityRepository
         $firstResult = ($currentPage - 1) * $maxResults;
 
         $query = $this->createQueryBuilder('q')
-            ->join('q.tags', 't')
+            ->leftJoin('q.tags', 't')
             ->addSelect('t')
-            ->orderBy('q.createdAt', 'DESC')
-            ->orderBy('q.id', 'ASC')
+            ->addOrderBy('q.createdAt', 'DESC')
             ->setMaxResults($maxResults)
             ->setFirstResult($firstResult)
         ;
@@ -79,7 +78,7 @@ class QuestionRepository extends ServiceEntityRepository
     public function findQuestionById(int $id)
     {
         return $this->createQueryBuilder('q')
-            ->join('q.tags', 't')
+            ->leftJoin('q.tags', 't')
             ->addSelect('t')
             ->join('q.user', 'u')
             ->addSelect('u')
